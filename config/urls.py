@@ -9,6 +9,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     #all auth
     path('', include('allauth.urls')),
+    #My apps urls
+    path('', include('product.urls')),
 ]
 
 
