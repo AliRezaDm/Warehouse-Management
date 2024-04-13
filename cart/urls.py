@@ -6,7 +6,7 @@ app_name = 'cart'
 
 urlpatterns = [
     path('', views.CartListView.as_view(), name='cart_detail'),
-    path('add', views.cart_add, name='add'),
-    path('remove', views.cart_remove, name='remove'),
-    path('clear', views.cart_remove, name='clear'),
+    path('add', views.add_cart, name='add'),
+    path('remove', views.remove_cart, name='remove'),
+    path('clear', views.clear_cart, name='clear'),
 ]
