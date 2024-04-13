@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Variant, Supply, Category
+from .models import Variant, Supply, Category, Color, Size
 
 
 @admin.register(Supply)
@@ -21,5 +21,16 @@ class CategoryAdmin(admin.ModelAdmin):
 
 @admin.register(Variant)
 class VariantAdmin(admin.ModelAdmin):
-    
+
     list_display=('supply', 'color', 'size', 'count')
+
+@admin.register(Color)
+class SizeAdmin(admin.ModelAdmin):
+
+    list_display=('name',)
+
+
+@admin.register(Size)
+class SizeAdmin(admin.ModelAdmin):
+
+    list_display=('name',)
