@@ -94,11 +94,11 @@ def search_view(request):
     this view gets search phrase from input in template named query via method POST
     and checks if there is match in Category.title
     """
-    supply_query =Supply.objects.Available()
+    variant_query =Variant.objects.Available()
     if request.method == "POST":
         search = request.POST.get('query')
-        supply = supply_query.filter(title__icontains = search)
-        return render(request, 'goods/search_result.html', {"Supply": supply})
+        variant = variant_query.filter(title__icontains = search)
+        return render(request, 'goods/search_result.html', {"variant": variant})
 
 
 
