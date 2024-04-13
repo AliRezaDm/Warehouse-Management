@@ -8,6 +8,36 @@ from django.views.decorators.http import require_POST
 from .models import Variant, Supply, Category, Color, Size
 
 
+
+class SupplyCreateView(CreateView):
+
+    model = Supply
+    fields = ['title', 'category', 'image', 'status', 'description']
+    template_name = 'product/add_supply_form.html'
+
+class SupplyUpdateView(UpdateView):
+
+    model = Supply
+    fields = ['title', 'category', 'image', 'status', 'description']
+    template_name = 'product/add_supply_form.html'
+    
+    def get_object(self):
+        id = self.kwargs.get('id')
+        return get_object_or_404(Supply.objects.Available(), pk=id)
+
+class SupplyDeleteView(DeleteView):
+
+    model = Supply
+    success_url = reverse_lazy('product:supply_list')
+
+    def get_object(self):
+        id = self.kwargs.get('id')
+        return get_object_or_404(Supply.objects.Available(), pk=id)
+
+
+
+#---------------------------------------------------------------------------------
+# Variant view -> CreateView, UpdateView, DeleteVeiw, ListView
 class VariantListView(ListView):
 
     model = Variant
@@ -23,6 +53,11 @@ class VariantDetailView(DetailView):
         return get_object_or_404(Variant.objects.all(), pk=id)
 
 class VariantCreateView(CreateView):
+    model = Variant
+    fields = ['product', 'color', 'size', 'count']
+    template_name = 'product/add_variant_form.html'
+
+class VariantUpdateView(UpdateView):
     model = Variant
     fields = ['product', 'color', 'size', 'count']
     template_name = 'product/add_variant_form.html'
@@ -103,7 +138,7 @@ def search_view(request):
     if request.method == "POST":
         search = request.POST.get('query')
         variant = variant_query.filter(title__icontains = search)
-        return render(request, 'goods/search_result.html', {"variant": variant})
+        return render(request, 'product/search_result.html', {"variant": variant})
 
 
 
