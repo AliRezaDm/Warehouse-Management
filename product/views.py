@@ -19,7 +19,7 @@ class VariantDetailView(DetailView):
     template_name = 'product/variant_detail.html'
 
     def get_object(self):
-        self.kwargs.get('id')
+        id = self.kwargs.get('id')
         return get_object_or_404(Variant.objects.all(), pk=id)
 
 #---------------------------------------------------------------------------------
