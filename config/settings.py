@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'product.apps.ProductConfig',
     'cart.apps.CartConfig',
     'order.apps.OrderConfig',
+    'accounts.apps.AccountsConfig',
     
 ]
 
@@ -143,6 +144,8 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
+
+AUTH_USER_MODEL = 'accounts.BaseUser'
 
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
