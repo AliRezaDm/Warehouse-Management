@@ -1,8 +1,9 @@
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, render
 from django.urls import reverse_lazy
 from django.db.models.base import Model as Model
 from django.views.generic import ListView, DetailView 
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.decorators.http import require_POST
 
 from .models import Variant, Supply, Category, Color, Size
 
@@ -85,7 +86,19 @@ class ColorListView(ListView):
     model = Color
     template_name = 'product/color_list.html'
     queryset = Color.objects.all()
-
+#---------------------------------------------------------------------------------
+# SearchView
+@require_POST
+def search_view(request):
+    """
+    this view gets search phrase from input in template named query via method POST
+    and checks if there is match in Category.title
+    """
+    supply_query =Supply.objects.Available()
+    if request.method == "POST":
+        search = request.POST.get('query')
+        supply = supply_query.filter(title__icontains = search)
+        return render(request, 'goods/search_result.html', {"Supply": supply})
 
 
 
