@@ -6,6 +6,7 @@ urlpatterns = [
     # Variant Urls
     path ('', views.VariantListView.as_view(), name='variant_list'),
     path ('detail/<id>', views.VariantDetailView.as_view(), name='variant_detail'),
+    path ('create_variant', views.VariantCreateView.as_view( ), name='variant_create'),
 
     # Category Urls  
     path('category/', views.CategoryList.as_view(), name='category_list'),

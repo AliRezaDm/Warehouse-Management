@@ -22,6 +22,11 @@ class VariantDetailView(DetailView):
         id = self.kwargs.get('id')
         return get_object_or_404(Variant.objects.all(), pk=id)
 
+class VariantCreateView(CreateView):
+    model = Variant
+    fields = ['product', 'color', 'size', 'count']
+    template_name = 'product/add_variant_form.html'
+
 #---------------------------------------------------------------------------------
 # Category view -> CreateView, UpdateView, DeleteVeiw, ListView
 class CategoryList(ListView):
