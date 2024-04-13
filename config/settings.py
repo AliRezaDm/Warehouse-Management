@@ -37,11 +37,16 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     # allauth apps
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
 
+    #Crispy Package
+    'crispy_forms', 
+    'crispy_bootstrap4',
+    
     #My Apps
     'product.apps.ProductConfig',
     'cart.apps.CartConfig',
