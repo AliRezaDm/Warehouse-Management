@@ -1,5 +1,11 @@
 from django import forms
-from .models import Size, Color, Category, Variant
+from .models import Size, Color, Category, Variant, Supply
+
+class SupplyAddForm(forms.ModelForm):
+
+    class Meta:
+        model = Supply
+        fields = ['image', 'category', 'title', 'status', 'description']
 
 class VariantAddForm(forms.ModelForm):
 
