@@ -108,3 +108,8 @@ class Variant(models.Model):
 
     def __unicode__(self):
         return 'supply id: {}'.format(self.supply.id)
+    
+    class Meta:
+    
+        verbose_name = 'محصول با ویژگی'
+        verbose_name_plural = ' محصولات با ویژگی'
