@@ -20,11 +20,17 @@ class SupplyUpdateView(UpdateView):
 
     model = Supply
     fields = ['title', 'category', 'image', 'status', 'description']
-    template_name = 'product/add_supply_form.html'
+    template_name = 'product/update_supply_form.html'
     
     def get_object(self):
+        global id
         id = self.kwargs.get('id')
         return get_object_or_404(Supply.objects.Available(), pk=id)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['id'] = id 
+        return context
 
 class SupplyDeleteView(DeleteView):
 
@@ -62,11 +68,18 @@ class VariantCreateView(CreateView):
 class VariantUpdateView(UpdateView):
     model = Variant
     fields = ['supply', 'color', 'size', 'count']
-    template_name = 'product/add_variant_form.html'
+    template_name = 'product/update_variant_form.html'
 
     def get_object(self):
+        global id 
         id = self.kwargs.get('id')
         return get_object_or_404(Variant.objects.all(), pk=id)
+    
+    def get_context_data(self, **kwargs):
+
+        context = super().get_context_data(**kwargs)
+        context['id'] = id 
+        return context 
 #---------------------------------------------------------------------------------
 # Category view -> CreateView, UpdateView, DeleteVeiw, ListView
 class CategoryList(ListView):
@@ -85,8 +98,18 @@ class CategoryUpdateView(UpdateView):
 
     model = Category
     fields = ['parent', 'title', 'status']
-    template_name = "product/add_category_form.html"
+    template_name = "product/update_category_form.html"
+    
+    def get_object(self):
+        global id 
+        id = self.kwargs.get('id')
+        return get_object_or_404(Category.objects.all(), pk=id)
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['id'] = id 
+        return context
+    
 class CategoryDeleteView(DeleteView):
 
     model = Category
@@ -104,8 +127,18 @@ class SizeUpdateView(UpdateView):
 
     model = Size
     fields = ['name']
-    template_name = "product/add_size_form.html"
+    template_name = "product/update_size_form.html"
 
+    def get_object(self):
+        global id
+        id = self.kwargs.get('id')
+        return get_object_or_404(Size.objects.all(), pk=id)
+   
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['id'] = id 
+        return context
+    
 class SizeListView(ListView):
     
     model = Size
@@ -124,8 +157,18 @@ class ColorUpdateView(UpdateView):
 
     model = Color
     fields = ['name']
-    template_name = "product/add_color_form.html"
+    template_name = "product/update_color_form.html"
 
+    def get_object(self):
+        global id 
+        id = self.kwargs.get('id')
+        return get_object_or_404(Color.objects.all(), pk=id)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['id'] = id 
+        return context
+    
 class ColorListView(ListView):
     
     model = Color

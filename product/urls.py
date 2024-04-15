@@ -18,14 +18,17 @@ urlpatterns = [
     # Category Urls  
     path('category/', views.CategoryList.as_view(), name='category_list'),
     path('create_category/', views.CategoryCreateView.as_view(), name='category_create' ), 
+    path('update_category/<int:id>', views.CategoryUpdateView.as_view(), name='category_update' ), 
 
     # Color Urls
     path('create_color/', views.ColorCreateView.as_view(), name='color_create' ),
     path('color_list/', views.ColorListView.as_view(), name='color_list' ),
+    path('update_color/<int:id>', views.ColorUpdateView.as_view(), name='color_update' ),
 
     # Size Urls
     path('create_size/', views.SizeCreateView.as_view(), name='size_create' ), 
     path('size_list/', views.SizeListView.as_view(), name='size_list' ), 
+    path('update_size/<int:id>', views.SizeUpdateView.as_view(), name='size_update' ), 
 
     # Search Url
     path ('search/', views.search_view, name='search'),
