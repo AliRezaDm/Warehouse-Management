@@ -28,11 +28,13 @@ urlpatterns = [
     path('update_color/<int:id>', views.ColorUpdateView.as_view(), name='color_update' ),
     path('delete_color/<int:id>', views.ColorDeleteView.as_view(), name='color_delete' ),
 
+
     # Size Urls
     path('create_size/', views.SizeCreateView.as_view(), name='size_create' ), 
     path('size_list/', views.SizeListView.as_view(), name='size_list' ), 
     path('update_size/<int:id>', views.SizeUpdateView.as_view(), name='size_update' ), 
     path('delete_size/<int:id>', views.SizeDeleteView.as_view(), name='size_delete' ), 
+
 
     # Search Url
     path ('search/', views.search_view, name='search'),
