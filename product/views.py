@@ -61,9 +61,12 @@ class VariantCreateView(CreateView):
 
 class VariantUpdateView(UpdateView):
     model = Variant
-    fields = ['product', 'color', 'size', 'count']
+    fields = ['supply', 'color', 'size', 'count']
     template_name = 'product/add_variant_form.html'
 
+    def get_object(self):
+        id = self.kwargs.get('id')
+        return get_object_or_404(Variant.objects.all(), pk=id)
 #---------------------------------------------------------------------------------
 # Category view -> CreateView, UpdateView, DeleteVeiw, ListView
 class CategoryList(ListView):
