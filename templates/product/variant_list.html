@@ -49,7 +49,7 @@
         <div class="icon">
           <i class="ion ion-bag"></i>
         </div>
-        <a href="{% url 'goods:variant_detail' object.id %}" class="small-box-footer">نمایش بیشتر <i class="fas fa-arrow-circle-right"></i></a>
+        <a href="{% url 'product:variant_detail' object.id %}" class="small-box-footer">نمایش بیشتر <i class="fas fa-arrow-circle-right"></i></a>
       </div>
     </div>
   {% endfor %}
@@ -105,12 +105,12 @@
           </td>
        
           <td>
-            <a  class="btn btn-warning" href="{% url 'goods:variant_update' object.id %}">
+            <a  class="btn btn-warning" href="{% url 'product:variant_update' object.id %}">
               ویرایش
             </a>
           </td>
           <td>
-            <a  class="btn btn-danger" href="{% url 'goods:variant_update' object.id %}">
+            <a  class="btn btn-danger" href="{% url 'product:variant_update' object.id %}">
               حذف
             </a>
           </td>

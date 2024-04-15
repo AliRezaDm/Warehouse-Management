@@ -6,6 +6,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.decorators.http import require_POST
 
 from .models import Variant, Supply, Category, Color, Size
+from . import forms
 
 
 
@@ -54,8 +55,9 @@ class VariantDetailView(DetailView):
 
 class VariantCreateView(CreateView):
     model = Variant
-    fields = ['product', 'color', 'size', 'count']
+    # fields = ['supply', 'color', 'size', 'count']
     template_name = 'product/add_variant_form.html'
+    form_class = forms.VariantAddForm
 
 class VariantUpdateView(UpdateView):
     model = Variant

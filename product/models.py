@@ -27,7 +27,7 @@ class Category(models.Model):
          return self.title
     
     def get_absolute_url(self):
-        return reverse("goods:category_list")
+        return reverse("product:category_list")
 
 class Supply(models.Model):
 
@@ -60,7 +60,7 @@ class Supply(models.Model):
     image_tag.short_description = short_decsription = 'تصویر محصول'
 
     def get_absolute_url(self):
-        return reverse("goods:supply_list")
+        return reverse("product:variant_list")
     
 
 
@@ -77,7 +77,7 @@ class Color(models.Model):
         verbose_name_plural = 'رنگ ها'
 
     def get_absolute_url(self):
-        return reverse("goods:supply_list")
+        return reverse("product:variant_list")
 
 class Size(models.Model):
     
@@ -92,7 +92,7 @@ class Size(models.Model):
         verbose_name_plural = 'اندازه ها'
 
     def get_absolute_url(self):
-        return reverse("goods:supply_list")
+        return reverse("product:variant_list")
     
 
 
@@ -113,3 +113,6 @@ class Variant(models.Model):
     
         verbose_name = 'محصول با ویژگی'
         verbose_name_plural = ' محصولات با ویژگی'
+
+    def get_absolute_url(self):
+        return reverse("product:variant_list")
