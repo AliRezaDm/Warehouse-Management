@@ -10,8 +10,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 class CartListView(ListView, LoginRequiredMixin):
     
-    model = Cart
-    template_name = 'cart/cart_detail.html'
+    model = CartItem
+    template_name = 'cart/cart_list.html'
 
 
 @require_POST
