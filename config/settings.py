@@ -171,3 +171,6 @@ AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend',
 
 ]
+
+#Crispy 
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
