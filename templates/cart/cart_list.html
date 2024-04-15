@@ -1,0 +1,48 @@
+{% extends "product/base.html" %}
+{% load static%}
+
+{% block content %}
+
+  <div class="card">
+    <div class="card-header">
+      <h3 class="card-title"style="float:right">لیست سفارشات</h3>
+      <h4 class="card-title"style="float:right">name of user</h3>
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body">
+      <table class="table table-bordered">
+        <thead>                  
+          <tr>
+            <th style="width: 10px">ردیف</th>
+            <th>عنوان</th>
+            <th>رنگ</th>
+            <th>سایز</th>
+            <th>تعداد</th>
+            <th>تاریخ و ساعت</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for item in object_list %}
+                <tr>
+                <td>{{item.id}}</td>
+                <td>{{item.variant}}</td>
+                
+                </tr>
+            {% endfor %}
+            
+        </tbody>
+      </table>
+    </div>
+    <!-- /.card-body -->
+    <div class="card-footer clearfix">
+      <ul class="pagination pagination-sm m-0 float-right">
+        <li class="page-item"><a class="page-link" href="#">«</a></li>
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item"><a class="page-link" href="#">»</a></li>
+      </ul>
+    </div>
+  </div>
+
+{% endblock %}

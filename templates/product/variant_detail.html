@@ -74,7 +74,7 @@
                 <div class="info-box bg-light">
                   <div class="info-box-content">
                     <span class="info-box-text text-center text-muted">توضیحی درباره محصول</span>
-                    <span class="info-box-number text-center text-muted mb-0">{{object.description}}</span>
+                    <span class="info-box-number text-center text-muted mb-0">{{object.supply.description}}</span>
                   </div>
                 </div>
               </div>
@@ -83,13 +83,14 @@
                   <div class="info-box-content">
                     <span class="info-box-text text-center text-muted">تصویر محصول</span>
                     <span class="info-box-number text-center text-muted mb-0">
-                        <img src="{{object.image.url}}" alt="{{object.title}}" class=" img-size-50 mr-2"></span>
+                        <img src="{{object.supply.image.url}}" alt="{{object.title}}" class=" img-size-50 mr-2"></span>
                </div>
 
-               <form method="post" action="{% url 'cart:add_cart' %}">
+               <form method="post" action="{% url 'cart:add' %}">
                 {% csrf_token %}
                   <input style="display:none;" name="variant_id", value="{{object.id}}">
                   <input name="quantity" type="number">
+                  <button class="btn btn-success" type="submit">افزودن به لیست</button>
                 </form>
                 <a  class="btn btn-warning" href="{% url 'product:variant_update' object.id %}">
                   ویرایش
