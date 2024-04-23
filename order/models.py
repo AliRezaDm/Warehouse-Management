@@ -7,7 +7,10 @@ class Order(models.Model):
 
     user = models.ForeignKey(BaseUser, verbose_name=' نام کاربر', on_delete=models.CASCADE, related_name='order_user')
     create_at = models.DateTimeField(default=timezone.now())
+    customer_name = models.CharField(max_length=255, blank=True, null=True, verbose_name='اسم مشتری')
+    customer_phone_number = models.CharField(max_length=12, blank=True, null=True, verbose_name='شماره مشتری')
     get_total_price = models.PositiveIntegerField(verbose_name='قیمت سفارش')
+    is_paid = models.BooleanField(verbose_name='پرداخت انجام شد؟', default=False)
 
     def __str__(self):
         return f'کاربر:{self.user.username} | شماره سفارش: {self.id}'
@@ -25,7 +28,7 @@ class Order(models.Model):
 class OrderItem(models.Model):
 
     order = models.ForeignKey(Order, verbose_name=' سفارش', on_delete=models.CASCADE, related_name='order_items')
-    variant =  models.ForeignKey(Variant, verbose_name='نام محصول', on_delete=models.CASCADE, related_name='order_supply', unique=True)
+    variant =  models.ForeignKey(Variant, verbose_name='نام محصول', on_delete=models.CASCADE, related_name='order_supply')
     price = models.PositiveIntegerField(verbose_name='قیمت محصول')
     quantity = models.PositiveIntegerField(verbose_name='تعداد محصول')
 
@@ -39,10 +42,6 @@ class OrderItem(models.Model):
 
     def color(self):
         return self.variant.color.name
-    
-    @property
-    def price(self):
-        return self.variant.price
 
     def total_price(self):
         return self.price * self.quantity

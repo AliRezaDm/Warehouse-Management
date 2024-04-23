@@ -11,7 +11,7 @@ class VariantAddForm(forms.ModelForm):
 
     class Meta:
         model = Variant
-        fields = ['supply', 'color', 'size', 'inventory']
+        fields = ['supply', 'color', 'size', 'price', 'inventory']
 
 class CategoryAddForm(forms.ModelForm):
 
