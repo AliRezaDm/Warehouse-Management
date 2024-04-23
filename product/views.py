@@ -1,3 +1,4 @@
+from typing import Any
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse_lazy
 from django.db.models.base import Model as Model
@@ -8,6 +9,7 @@ from django.views.decorators.http import require_POST
 from .models import Variant, Supply, Category, Color, Size
 from . import forms
 
+from cart.models import CartItem
 
 
 class SupplyCreateView(CreateView):
@@ -52,9 +54,16 @@ class SupplyDeleteView(DeleteView):
 #---------------------------------------------------------------------------------
 # Variant view -> CreateView, UpdateView, DeleteVeiw, ListView
 class VariantListView(ListView):
-
     model = Variant
     template_name = 'product/variant_list.html'
+
+    def get_context_data(self, **kwargs) -> dict[str, Any]:
+        context = super().get_context_data(**kwargs)
+        cart_items = CartItem.objects.filter(cart__user=self.request.user)
+        cart_items_quantity = {item.variant.id : item.quantity for item in cart_items}
+        context['cart_items_quantity'] = cart_items_quantity
+        return context
+    
 
 class VariantDetailView(DetailView):
 
@@ -68,7 +77,7 @@ class VariantDetailView(DetailView):
 
 class VariantCreateView(CreateView):
     model = Variant
-    # fields = ['supply', 'color', 'size', 'count']
+    # fields = ['supply', 'color', 'size', 'inventory']
     template_name = 'product/add_variant_form.html'
     form_class = forms.VariantAddForm
 
@@ -84,7 +93,7 @@ class VariantDeleteView(DeleteView):
     
 class VariantUpdateView(UpdateView):
     model = Variant
-    fields = ['supply', 'color', 'size', 'count']
+    fields = ['supply', 'color', 'size', 'price', 'inventory']
     template_name = 'product/update_variant_form.html'
 
     def get_object(self):

@@ -97,11 +97,12 @@ class Size(models.Model):
 
 
 class Variant(models.Model):
-         
+
     supply=models.ForeignKey(Supply, verbose_name='نام محصول', on_delete=models.CASCADE, related_name='variant_supply')
     color=models.ForeignKey(Color, verbose_name='رنگ محصول', on_delete=models.CASCADE, related_name='variant_color')
     size=models.ForeignKey(Size, verbose_name='سایز محصول', on_delete=models.CASCADE, related_name='variant_size')
-    count=models.PositiveIntegerField(verbose_name='تعداد', default=0)
+    price = models.PositiveIntegerField(verbose_name='قیمت محصول')
+    inventory=models.PositiveIntegerField(verbose_name='تعداد', default=0)
 
     def __str__(self):
         return self.supply.title 
