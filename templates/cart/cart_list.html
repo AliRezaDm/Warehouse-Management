@@ -5,33 +5,64 @@
 
   <div class="card">
     <div class="card-header">
-      <h3 class="card-title"style="float:right">لیست سفارشات</h3>
-      <h4 class="card-title"style="float:right">name of user</h3>
+      <h3 class="card-title"style="float:right">لیست سبد خرید</h3>
+      {% comment %} <h4 class="card-title"style="float:right">{{ cart_user }}</h3> {% endcomment %}
     </div>
     <!-- /.card-header -->
     <div class="card-body">
-      <table class="table table-bordered">
-        <thead>                  
-          <tr>
-            <th style="width: 10px">ردیف</th>
-            <th>عنوان</th>
-            <th>رنگ</th>
-            <th>سایز</th>
-            <th>تعداد</th>
-            <th>تاریخ و ساعت</th>
-          </tr>
-        </thead>
-        <tbody>
-            {% for item in object_list %}
-                <tr>
-                <td>{{item.id}}</td>
-                <td>{{item.variant}}</td>
-                
-                </tr>
-            {% endfor %}
-            
-        </tbody>
-      </table>
+      <div class="row">
+        <table class="table table-bordered">
+          <thead>                  
+            <tr>
+              <th style="width: 10px">ردیف</th>
+              <th>عنوان</th>
+              <th>رنگ</th>
+              <th>سایز</th>
+              <th>قیمت</th>
+              <th>تعداد</th>
+              <th>قیمت کل</th>
+              <th>تاریخ و ساعت</th>
+            </tr>
+          </thead>
+          <tbody>
+              {% for item in object_list %}
+                  <tr>
+                  <td>{{item.id}}</td>
+                  <td>{{item.variant}}</td>
+                  <td>{{item.color}}</td>
+                  <td>{{item.size}}</td>
+                  <td>{{item.price}}</td>
+                  <td>{{item.quantity}}</td>
+                  <td>{{item.total_price}}</td>
+                  <td>{{cart_user.create_at}}</td>
+                  </tr>
+              {% endfor %}
+              
+          </tbody>
+        </table>
+      </div>
+
+      <br>
+      
+      <form method="post" action="{% url 'order:order_create' %}">
+        {% csrf_token %}
+        <div class="row">
+          <div class="col-sm-6">
+            <!-- text input -->
+            <div class="form-group">
+              <label for="name"> اسم مشتری</label>
+              <input type="text" id="name" name="customer_name"  class="form-control"> 
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="phone">شماره مشتری</label>
+              <input type="tel" id="phone" name="customer_phone"  class="form-control">       
+            </div>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-block bg-gradient-success btn-sm">ثبت سفارش</button>
+      </form>
     </div>
     <!-- /.card-body -->
     <div class="card-footer clearfix">

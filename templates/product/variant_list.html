@@ -1,5 +1,6 @@
 {% extends "product/base.html" %}
 {% load static %}
+{% load cart_tags %}
 {% block content %}
 
 <h2 style="padding-right:25px; padding-bottom: 25px;">لیست محصولات</h2>
@@ -26,11 +27,13 @@
           <th>نام محصول</th>
           <th> رنگ محصول</th>
           <th>اندازه محصول</th>
+          <th>قیمت</th>
           <th>تعداد</th>
         </tr>
         </thead>
         <tbody>
           {% for object in object_list%}
+            {% with object_id=object.id %}
         <tr>
           <td>
             <img src="{{object.supply.image.url}}" alt="{{object.supply}}" class="img-circle img-size-32 mr-2">
@@ -47,7 +50,10 @@
             {{object.size}}
           </td>
           <td>
-           {{object.count}}
+            {{object.price}}
+          </td>
+          <td>
+           {{object.inventory}}
           </td>
        
           <td>
@@ -64,11 +70,16 @@
             <form method="post" action="{% url 'cart:add' %}">
               {% csrf_token %}
                 <input style="display:none;" name="variant_id", value="{{object.id}}">
-                <input name="quantity" type="number">
+                {% if object_id in cart_items_quantity %}
+                  <input name="quantity" type="number" value="{{cart_items_quantity|get_item:object_id }}">
+                {% else %}
+                  <input name="quantity" type="number" value="0">
+                {% endif %}
                 <button class="btn btn-success" type="submit">افزودن به لیست</button>
             </form>
           </td>
         </tr>
+        {% endwith %}
        {% endfor %}
         </tbody>
       </table>

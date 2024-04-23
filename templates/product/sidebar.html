@@ -75,9 +75,15 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{% url 'cart:cart_detail' %}" class="nav-link">
+                <a href="{% url 'order:order_detail' %}" class="nav-link">
                   <i class="nav-icon fas fa-copy"></i>
                   <p>لیست سفارشات</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{% url 'cart:cart_detail' %}" class="nav-link">
+                  <i class="nav-icon fas fa-copy"></i>
+                  <p>لیست سبد خرید</p>
                 </a>
               </li>
               <li class="nav-item">

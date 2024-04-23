@@ -1,0 +1,51 @@
+{% extends "product/base.html" %}
+{% load static%}
+
+{% block content %}
+
+{% for order in orders %}
+<div class="card">
+  <div class="card-header">
+    <h3 class="card-title" style="float:right">لیست سفارشات</h3>
+    &emsp;
+    <h4 class="card-title" style="float:right">{{ order.customer_name }}</h4>
+    |
+    <h4 class="card-title" style="float:right">{{ order.customer_phone_number }}</h4>
+  </div>
+  <!-- /.card-header -->
+  <div class="card-body">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th style="width: 10px">ردیف</th>
+          <th>عنوان</th>
+          <th>رنگ</th>
+          <th>سایز</th>
+          <th>قیمت</th>
+          <th>تعداد</th>
+          <th>قیمت کل</th>
+          <th>تاریخ و ساعت</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in order.order_items.all %}
+        <tr>
+          <td>{{ item.id }}</td>
+          <td>{{ item.variant.supply.title }}</td>
+          <td>{{ item.variant.color.name }}</td>
+          <td>{{ item.variant.size.name }}</td>
+          <td>{{ item.price }}</td>
+          <td>{{ item.quantity }}</td>
+          <td>{{ item.total_price }}</td>
+          <td>{{ order.create_at }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <!-- /.card-body -->
+  <div class="card-footer clearfix">
+  </div>
+</div>
+{% endfor %}
+{% endblock %}
