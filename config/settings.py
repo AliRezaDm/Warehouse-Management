@@ -158,6 +158,7 @@ MEDIA_URL = 'media/'
 
 
 LOGIN_URL = 'account_login'
+LOGIN_REDIRECT_URL = 'product:variant_list'
 LOGOUT_REDIRECT_URL = 'account_login'
 
 
