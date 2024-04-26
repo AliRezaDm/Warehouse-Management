@@ -59,7 +59,7 @@ class VariantListView(ListView):
 
     def get_context_data(self, **kwargs) -> dict[str, Any]:
         context = super().get_context_data(**kwargs)
-        cart_items = CartItem.objects.filter(cart__user=self.request.user)
+        cart_items = CartItem.objects.filter(cart__user=self.request.user.id)
         cart_items_quantity = {item.variant.id : item.quantity for item in cart_items}
         context['cart_items_quantity'] = cart_items_quantity
         return context
