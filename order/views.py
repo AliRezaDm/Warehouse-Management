@@ -1,11 +1,10 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
 from .models import Order, OrderItem
 from cart.models import Cart, CartItem
 from product.models import Variant
 
-@login_required()
+
 def order_detail(request):
     orders = Order.objects.prefetch_related('order_items').all()
     
@@ -17,7 +16,6 @@ def order_detail(request):
 
 
 @require_POST
-@login_required()
 def order_create(request):
     
     customer_name = request.POST.get('customer_name')

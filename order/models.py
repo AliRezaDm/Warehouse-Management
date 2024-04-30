@@ -30,7 +30,7 @@ class OrderItem(models.Model):
     order = models.ForeignKey(Order, verbose_name=' سفارش', on_delete=models.CASCADE, related_name='order_items')
     variant =  models.ForeignKey(Variant, verbose_name='نام محصول', on_delete=models.CASCADE, related_name='order_supply')
     price = models.PositiveIntegerField(verbose_name='قیمت محصول')
-    quantity = models.PositiveIntegerField(verbose_name='تعداد محصول')
+    quantity = models.PositiveIntegerField(verbose_name='تعداد محصول', default=1)
 
     def __str__(self):
         return f'کاربر:{self.order.user.username} | شماره سفارش: {self.order.id}'
