@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    'rosetta',
 
     #Crispy Package
     'crispy_forms', 
@@ -63,6 +64,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    
     # All auth middleware
     "allauth.account.middleware.AccountMiddleware",
 ]
@@ -121,14 +123,26 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+# locale
 
-TIME_ZONE = 'Asia/Tehran'
+# LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'fa'
 
-USE_I18N = True
+LANGUAGES = (
+    ('en', 'English'),
+    ('fa', 'Persian'),
+)
 
+TIME_ZONE = 'UTC'
+# TIME_ZONE = 'Asia/Tehran'
+
+USE_I18N = True     # Internationalization
+USE_L10N = True     # Localization
 USE_TZ = True
 
+LOCALE_PATHS = (
+    str(BASE_DIR.joinpath("locale")),
+)
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
@@ -158,8 +172,9 @@ MEDIA_URL = 'media/'
 
 
 LOGIN_URL = 'account_login'
-LOGIN_REDIRECT_URL = 'product:variant_list'
 LOGOUT_REDIRECT_URL = 'account_login'
+LOGIN_REDIRECT_URL = '/'
+SIGNUP_REDIRECT_URL = '/'
 
 
 
