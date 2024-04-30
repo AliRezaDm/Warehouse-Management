@@ -39,13 +39,13 @@ def add_cart(request):
     variant_quantity = request.POST.get('quantity')
 
     try:
-        cart_user = Cart.objects.get(user=request.user)
+        cart_user = Cart.objects.get(user=request.user.id)
         cart_item = CartItem.objects.get(cart=cart_user, variant_id=variant_id)
         variant_quantity = int(variant_quantity)
         cart_item.quantity += variant_quantity
         cart_item.save()
     except Cart.DoesNotExist:
-        cart_user = Cart.objects.create(user=request.user)
+        cart_user = Cart.objects.create(user=request.user.id)
         variant = get_object_or_404(Variant, id=variant_id)
         CartItem.objects.create(cart=cart_user, variant=variant, quantity=variant_quantity)
     except CartItem.DoesNotExist:
