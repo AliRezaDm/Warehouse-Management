@@ -1,24 +1,35 @@
 from typing import Any
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponseRedirect
 from django.views.generic import ListView
 from .models import Cart, CartItem
 from django.views.decorators.http import require_POST
-from django.contrib.auth.mixins import LoginRequiredMixin
+
 
 from product.models import Variant
 
 
 
-class CartListView(ListView, LoginRequiredMixin):
-    model = CartItem
-    template_name = 'cart/cart_list.html'
+# class CartListView(ListView):
+#     model = CartItem
+#     template_name = 'cart/cart_list.html'
 
-    def get_context_data(self, **kwargs) -> dict[str, Any]:
-        context = super().get_context_data(**kwargs)
-        context["cart_user"] = Cart.objects.get(user=self.request.user)
-        return context
+#     def get_context_data(self, **kwargs) -> dict[str, Any]:
+#         context = super().get_context_data(**kwargs)
+#         context["cart_user"] = Cart.objects.get(user=self.request.user)
+#         return context
     
+def cart_detail(request):
+
+    item = Cart.objects.all()
+
+    if item:
+         context ={
+             'object_list' : item
+         }
+    else:
+        context ={}
+    return render(request, 'cart/cart_list.html', context)
 
 @require_POST
 def add_cart(request):
