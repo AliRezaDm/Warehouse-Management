@@ -16,13 +16,13 @@ class SupplyCreateView(CreateView):
 
     model = Supply
     fields = ['title', 'category', 'image', 'status', 'description']
-    template_name = 'product/add_supply_form.html'
+    template_name = 'product/add/add_supply_form.html'
 
 class SupplyUpdateView(UpdateView):
 
     model = Supply
     fields = ['title', 'category', 'image', 'status', 'description']
-    template_name = 'product/update_supply_form.html'
+    template_name = 'product/update/update_supply_form.html'
     
     def get_object(self):
         global id
@@ -38,7 +38,7 @@ class SupplyDeleteView(DeleteView):
 
     model = Supply
     success_url = reverse_lazy('product:supply_list')
-    template_name = 'product/delete_confirm_supply.html'
+    template_name = 'product/delete/delete_confirm_supply.html'
 
     def get_object(self):
         global id 
@@ -55,7 +55,7 @@ class SupplyDeleteView(DeleteView):
 # Variant view -> CreateView, UpdateView, DeleteVeiw, ListView
 class VariantListView(ListView):
     model = Variant
-    template_name = 'product/variant_list.html'
+    template_name = 'product/list/variant_list.html'
 
     def get_context_data(self, **kwargs) -> dict[str, Any]:
         context = super().get_context_data(**kwargs)
@@ -78,14 +78,14 @@ class VariantDetailView(DetailView):
 class VariantCreateView(CreateView):
     model = Variant
     # fields = ['supply', 'color', 'size', 'inventory']
-    template_name = 'product/add_variant_form.html'
+    template_name = 'product/add/add_variant_form.html'
     form_class = forms.VariantAddForm
 
 class VariantDeleteView(DeleteView):
 
     model = Variant
     success_url = reverse_lazy('product:variant_list')
-    template_name = 'product/delete_confirm_variant.html'
+    template_name = 'product/delete/delete_confirm_variant.html'
 
     def get_object(self):
         id = self.kwargs.get('id')
@@ -94,7 +94,7 @@ class VariantDeleteView(DeleteView):
 class VariantUpdateView(UpdateView):
     model = Variant
     fields = ['supply', 'color', 'size', 'price', 'inventory']
-    template_name = 'product/update_variant_form.html'
+    template_name = 'product/update/update_variant_form.html'
 
     def get_object(self):
         global id 
@@ -112,19 +112,19 @@ class CategoryList(ListView):
 
     model = Category
     queryset = Category.objects.filter(status=True)
-    template_name = "product/category_list"
+    template_name = "product/list/category_list.html"
 
 class CategoryCreateView(CreateView):
 
     model = Category
     fields = ['parent', 'title', 'status']
-    template_name = "product/add_category_form.html"
+    template_name = "product/add/add_category_form.html"
 
 class CategoryDeleteView(DeleteView):
 
     model = Variant
     success_url = reverse_lazy('product:variant_list')
-    template_name = 'product/delete_confirm_category.html'
+    template_name = 'product/delete/delete_confirm_category.html'
 
     def get_object(self):
         id = self.kwargs.get('id')
@@ -135,7 +135,7 @@ class CategoryUpdateView(UpdateView):
 
     model = Category
     fields = ['parent', 'title', 'status']
-    template_name = "product/update_category_form.html"
+    template_name = "product/update/update_category_form.html"
     
     def get_object(self):
         global id 
@@ -154,13 +154,13 @@ class SizeCreateView(CreateView):
 
     model = Size
     fields = ['name']
-    template_name = "product/add_size_form.html"
+    template_name = "product/add/add_size_form.html"
 
 class SizeUpdateView(UpdateView):
 
     model = Size
     fields = ['name']
-    template_name = "product/update_size_form.html"
+    template_name = "product/update/update_size_form.html"
 
     def get_object(self):
         global id
@@ -175,14 +175,14 @@ class SizeUpdateView(UpdateView):
 class SizeListView(ListView):
     
     model = Size
-    template_name = 'product/size_list.html'
+    template_name = 'product/list/size_list.html'
     queryset = Size.objects.all()
 
 class SizeDeleteView(DeleteView):
 
     model = Variant
     success_url = reverse_lazy('product:variant_list')
-    template_name = 'product/delete_confirm_size.html'
+    template_name = 'product/delete/delete_confirm_size.html'
 
     def get_object(self):
         id = self.kwargs.get('id')
@@ -194,13 +194,13 @@ class ColorCreateView(CreateView):
 
     model = Color
     fields = ['name']
-    template_name = "product/add_color_form.html"
+    template_name = "product/add/add_color_form.html"
 
 class ColorUpdateView(UpdateView):
 
     model = Color
     fields = ['name']
-    template_name = "product/update_color_form.html"
+    template_name = "product/update/update_color_form.html"
 
     def get_object(self):
         global id 
@@ -215,14 +215,14 @@ class ColorUpdateView(UpdateView):
 class ColorListView(ListView):
     
     model = Color
-    template_name = 'product/color_list.html'
+    template_name = 'product/list/color_list.html'
     queryset = Color.objects.all()
 
 class ColorDeleteView(DeleteView):
 
     model = Variant
     success_url = reverse_lazy('product:variant_list')
-    template_name = 'product/delete_confirm_color.html'
+    template_name = 'product/delete/delete_confirm_color.html'
 
     def get_object(self):
         id = self.kwargs.get('id')
