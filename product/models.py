@@ -62,7 +62,9 @@ class Supply(models.Model):
     def get_absolute_url(self):
         return reverse("product:variant_list")
     
-
+    def category_to_str(self):
+         return " - ".join([category.title for category in self.category.all()])
+    category_to_str.short_description = 'دسته بندی'
 
 class Color(models.Model):
     

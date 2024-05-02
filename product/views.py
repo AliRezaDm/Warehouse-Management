@@ -11,6 +11,10 @@ from . import forms
 
 from cart.models import CartItem
 
+class HomeListView(ListView):
+
+    model = Supply
+    template_name = 'product/home.html'
 
 class SupplyCreateView(CreateView):
 
