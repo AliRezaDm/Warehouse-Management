@@ -1,5 +1,5 @@
 from django import forms
-from .models import Size, Color, Category, Variant, Supply
+from .models import Size, Type, Category, Variant, Supply
 
 class SupplyAddForm(forms.ModelForm):
 
@@ -11,7 +11,7 @@ class VariantAddForm(forms.ModelForm):
 
     class Meta:
         model = Variant
-        fields = ['supply', 'color', 'size', 'price', 'inventory']
+        fields = ['supply', 'type', 'size', 'price', 'inventory']
 
 class CategoryAddForm(forms.ModelForm):
 
@@ -19,10 +19,10 @@ class CategoryAddForm(forms.ModelForm):
         model = Category
         fields = ['id', 'parent', 'title', 'status']
 
-class ColorAddForm(forms.ModelForm):
+class TypeAddForm(forms.ModelForm):
 
     class Meta:
-        model = Color
+        model = Type
         fields = ['name']
 
 class SizeAddForm(forms.ModelForm):

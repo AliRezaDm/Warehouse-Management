@@ -66,7 +66,23 @@ class Supply(models.Model):
          return " - ".join([category.title for category in self.category.all()])
     category_to_str.short_description = 'دسته بندی'
 
-class Color(models.Model):
+# class Color(models.Model):
+    
+#     name = models.CharField('نام رنگ', max_length=255, unique=True)
+
+#     def __str__(self):
+#         return self.name
+    
+#     class Meta:
+      
+#         verbose_name = 'رنگ'
+#         verbose_name_plural = 'رنگ ها'
+
+#     def get_absolute_url(self):
+#         return reverse("product:variant_list")
+
+
+class Type(models.Model):
     
     name = models.CharField('نام رنگ', max_length=255, unique=True)
 
@@ -75,11 +91,12 @@ class Color(models.Model):
     
     class Meta:
       
-        verbose_name = 'رنگ'
-        verbose_name_plural = 'رنگ ها'
+        verbose_name = 'نوع'
+        verbose_name_plural = 'انواع '
 
     def get_absolute_url(self):
         return reverse("product:variant_list")
+
 
 class Size(models.Model):
     
@@ -101,7 +118,7 @@ class Size(models.Model):
 class Variant(models.Model):
 
     supply=models.ForeignKey(Supply, verbose_name='نام محصول', on_delete=models.CASCADE, related_name='variant_supply')
-    color=models.ForeignKey(Color, verbose_name='رنگ محصول', on_delete=models.CASCADE, related_name='variant_color')
+    type=models.ManyToManyField(Type, verbose_name='نوع محصول',  related_name='variant_type')
     size=models.ForeignKey(Size, verbose_name='سایز محصول', on_delete=models.CASCADE, related_name='variant_size')
     price = models.PositiveIntegerField(verbose_name='قیمت محصول')
     inventory=models.PositiveIntegerField(verbose_name='تعداد', default=1)
@@ -119,3 +136,7 @@ class Variant(models.Model):
 
     def get_absolute_url(self):
         return reverse("product:variant_list")
+    
+    def type_to_str(self):
+         return " - ".join([type.name for type in self.type.all()])
+    type_to_str.short_description = 'انواغ'

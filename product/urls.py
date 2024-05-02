@@ -24,11 +24,11 @@ urlpatterns = [
     path('update_category/<int:id>', views.CategoryUpdateView.as_view(), name='category_update' ), 
     path('delete_category/<int:id>', views.CategoryDeleteView.as_view(), name='category_delete' ), 
 
-    # Color Urls
-    path('create_color/', views.ColorCreateView.as_view(), name='color_create' ),
-    path('color_list/', views.ColorListView.as_view(), name='color_list' ),
-    path('update_color/<int:id>', views.ColorUpdateView.as_view(), name='color_update' ),
-    path('delete_color/<int:id>', views.ColorDeleteView.as_view(), name='color_delete' ),
+    # Type Urls
+    path('create_type/', views.TypeCreateView.as_view(), name='type_create' ),
+    path('type_list/', views.TypeListView.as_view(), name='type_list' ),
+    path('update_type/<int:id>', views.TypeUpdateView.as_view(), name='type_update' ),
+    path('delete_type/<int:id>', views.TypeDeleteView.as_view(), name='type_delete' ),
 
     # Size Urls
     path('create_size/', views.SizeCreateView.as_view(), name='size_create' ), 

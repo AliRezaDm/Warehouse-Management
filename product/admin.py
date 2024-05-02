@@ -1,11 +1,11 @@
 from django.contrib import admin
-from .models import Variant, Supply, Category, Color, Size
+from .models import Variant, Supply, Category, Type, Size
 
 
 @admin.register(Supply)
 class SupplyAdmin(admin.ModelAdmin):
 
-    list_display = ('id', 'image_tag','title', 'status')
+    list_display = ('id', 'image_tag','title', 'status', 'category_to_str')
     list_filter = (['id', 'status'])
     search_fields = ('id', 'title')
     ordering = ['id']
@@ -22,10 +22,10 @@ class CategoryAdmin(admin.ModelAdmin):
 @admin.register(Variant)
 class VariantAdmin(admin.ModelAdmin):
 
-    list_display=('supply', 'color', 'size', 'inventory')
+    list_display=('supply', 'type_to_str', 'size', 'inventory')
 
-@admin.register(Color)
-class SizeAdmin(admin.ModelAdmin):
+@admin.register(Type)
+class TypeAdmin(admin.ModelAdmin):
 
     list_display=('name',)
 

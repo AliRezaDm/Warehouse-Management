@@ -6,7 +6,7 @@ from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.decorators.http import require_POST
 
-from .models import Variant, Supply, Category, Color, Size
+from .models import Variant, Supply, Category, Type, Size
 from . import forms
 
 from cart.models import CartItem
@@ -81,7 +81,7 @@ class VariantDetailView(DetailView):
 
 class VariantCreateView(CreateView):
     model = Variant
-    # fields = ['supply', 'color', 'size', 'inventory']
+    # fields = ['supply', 'Type', 'size', 'inventory']
     template_name = 'product/add/add_variant_form.html'
     form_class = forms.VariantAddForm
 
@@ -97,7 +97,7 @@ class VariantDeleteView(DeleteView):
     
 class VariantUpdateView(UpdateView):
     model = Variant
-    fields = ['supply', 'color', 'size', 'price', 'inventory']
+    fields = ['supply', 'type', 'size', 'price', 'inventory']
     template_name = 'product/update/update_variant_form.html'
 
     def get_object(self):
@@ -193,44 +193,44 @@ class SizeDeleteView(DeleteView):
         return get_object_or_404(Size.objects.all(), pk=id)
     
 #---------------------------------------------------------------------------------
-# Color view -> CreateView, UpdateView, ListView, DeleteView
-class ColorCreateView(CreateView):
+# Type view -> CreateView, UpdateView, ListView, DeleteView
+class TypeCreateView(CreateView):
 
-    model = Color
+    model = Type
     fields = ['name']
-    template_name = "product/add/add_color_form.html"
+    template_name = "product/add/add_type_form.html"
 
-class ColorUpdateView(UpdateView):
+class TypeUpdateView(UpdateView):
 
-    model = Color
+    model = Type
     fields = ['name']
-    template_name = "product/update/update_color_form.html"
+    template_name = "product/update/update_type_form.html"
 
     def get_object(self):
         global id 
         id = self.kwargs.get('id')
-        return get_object_or_404(Color.objects.all(), pk=id)
+        return get_object_or_404(Type.objects.all(), pk=id)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['id'] = id 
         return context
     
-class ColorListView(ListView):
+class TypeListView(ListView):
     
-    model = Color
-    template_name = 'product/list/color_list.html'
-    queryset = Color.objects.all()
+    model = Type
+    template_name = 'product/list/type_list.html'
+    queryset = Type.objects.all()
 
-class ColorDeleteView(DeleteView):
+class TypeDeleteView(DeleteView):
 
     model = Variant
     success_url = reverse_lazy('product:variant_list')
-    template_name = 'product/delete/delete_confirm_color.html'
+    template_name = 'product/delete/delete_confirm_type.html'
 
     def get_object(self):
         id = self.kwargs.get('id')
-        return get_object_or_404(Color.objects.all(), pk=id)
+        return get_object_or_404(Type.objects.all(), pk=id)
     
 #---------------------------------------------------------------------------------
 # SearchView
