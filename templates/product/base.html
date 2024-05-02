@@ -45,7 +45,7 @@
         <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="{% url 'product:variant_list'%}" class="nav-link">خانه</a>
+        <a href="{% url 'product:home'%}" class="nav-link">خانه</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
         <a href="{% url 'product:category_list'%}" class="nav-link">دسته بندی ها</a>
@@ -68,9 +68,30 @@
 
     <!-- Right navbar links -->
     <ul class="navbar-nav mr-auto-navbav">
-      <!-- Messages Dropdown Menu -->
-      
-      <!-- Notifications Dropdown Menu -->
+
+      <li class="nav-item dropdown">
+        <a class="nav-link" data-toggle="dropdown" href="#" aria-expanded="false">
+          <i class="far fa-edit"></i>
+          
+        </a>
+        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+          <span class="dropdown-item dropdown-header">منوی افزودن</span>
+          <div class="dropdown-divider"></div>
+          <a href="{% url 'product:supply_create' %}" class="dropdown-item">
+            <i class="fas fa-plus-square"></i> افزودن محصول
+            
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="{% url 'product:category_create' %}" class="dropdown-item">
+            <i class="fas fa-plus-square"></i> افزودن دسته 
+            
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="{% url 'product:size_create' %}" class="dropdown-item">
+            <i class="fas fa-plus-square"></i> افزودن اندازه
+            
+          </a>
+      </li>
       <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
           
@@ -78,6 +99,20 @@
         </a>
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
           
+         
+          <div class="dropdown-divider"></div>
+          <a href="{% url 'product:variant_list'%}" class="dropdown-item">
+            <i class="nav-icon fas fa-table"></i>  لیست محصولات
+            <span class="float-right text-muted text-sm"></span>
+          </a>
+          <div class="dropdown-divider"></div>
+         
+          <div class="dropdown-divider"></div>
+          <a href="{% url 'product:category_list'%}" class="dropdown-item">
+            <i class="nav-icon fas fa-chart-pie"></i>  لیست دسته ها
+            <span class="float-right text-muted text-sm"></span>
+          </a>
+          <div class="dropdown-divider"></div>
          
           <div class="dropdown-divider"></div>
           <a href="{% url 'account_logout'%}" class="dropdown-item">

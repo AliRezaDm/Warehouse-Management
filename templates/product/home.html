@@ -1,125 +1,134 @@
 {% extends "product/base.html" %}
 {% load static %}
 {% block content %}
+  <div class="row" style="padding-right:25px; padding-left:25px;">
+    <div class="col-md-3">
+      <div class="card card-success">
+        <div class="card-header">
+          <h3 class="card-title">دسته اصلی</h3>
+            <div class="card-tools">
+             <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+             </button>
+        </div>
+          <!-- /.card-tools -->
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body" style="display: block;">
+          <div class="card card-outline card-success">
+            <div class="card-header">
+              <h3 class="card-title">زیر دسته اول</h3>
 
-<h2 style="padding-right:25px; padding-bottom: 25px;">لیست محصولات</h2>
-
-{% comment %} 
-<!--small containers -->
-<div class="container-fluid">
-  <div class="row">
-    {% for object in object_list%}  
-      <div class="col-12 col-sm-6 col-md-3">
-        <div class="info-box">
-          <span class="info-box-icon bg-info elevation-1"><img src="{{object.image.url}}"></span>
-
-          <div class="info-box-content">
-            <span class="info-box-text">{{object.title}}</span>
-            <span class="info-box-number">
-              تعداد 
-              <small>{{object.count}}</small>
-            </span>
+              <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse"><i style="color:black;"class="fas fa-minus"></i>
+                </button>
+              </div>
+              <!-- /.card-tools -->
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body" style="display: block;">
+              <p>زیر دسته های دوم به  صورت لینک</p>
+              <p>لینک 1 </p>
+              <p>لینک 2 </p>
+              <p>لینک 3 </p>
+             
+            </div>
+            <!-- /.card-body -->
           </div>
-          <!-- /.info-box-content -->
+          <div class="card card-outline card-success">
+            <div class="card-header">
+              <h3 class="card-title">زیر دسته اول</h3>
+
+              <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse"><i style="color:black;"class="fas fa-minus"></i>
+                </button>
+              </div>
+              <!-- /.card-tools -->
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body" style="display: block;">
+              <p>زیر دسته های دوم به  صورت لینک</p>
+              <p>لینک 1 </p>
+              <p>لینک 2 </p>
+              <p>لینک 3 </p>
+             
+            </div>
+            <!-- /.card-body -->
+          </div>
         </div>
-        <!-- /.info-box -->
+        <!-- /.card-body -->
       </div>
-    
-      <!-- fix for small devices only -->
-      <div class="clearfix hidden-md-up"></div>
-    {% endfor %}  
-    
-  </div>
-</div> {% endcomment %}
- 
-
-
-<!-- Big containers -->
-<div class="container-fluid">
-  <div class="row">
-    {% for object in object_list%}
-    <div class="col-lg-3 col-6">
-      <!-- small box -->
-      <div class="small-box bg-info">
-        <div class="inner">
-          <h3>{{object.count}}</h3>
-
-          <p>{{object.title}}</p>
-        </div>
-        <div class="icon">
-          <i class="ion ion-bag"></i>
-        </div>
-        <a href="{% url 'product:variant_detail' object.id %}" class="small-box-footer">نمایش بیشتر <i class="fas fa-arrow-circle-right"></i></a>
-      </div>
+      <!-- /.card -->
     </div>
-  {% endfor %}
   </div>
-</div>
 
+  <!------------------------------------------------------------------------------------------------------------------------------------>
+  
+  <div class="row" style="padding-right:25px; padding-left:25px;">
+    <div class="col-md-4">
+      <!-- Box Comment -->
+      <div class="card card-widget">
+        <div class="card-header">
+          <div class="user-block">
+            
+            <span class="username"><a href="#">نام محصول</a></span>
+            <span class="description">دسته محصول</span>
+          </div>
+          <!-- /.user-block -->
+          <div class="card-tools">
+            <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+            </button>
+           
+          </div>
+          <!-- /.card-tools -->
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body" style="display: block;">
+          <img class="img-fluid pad" src="{% static 'product/dist/img/photo2.png'%}" alt="Photo" style="padding-bottom: 25px;">
 
+          <p>توضیح کوتاهی درباره محصول البته اختیاری</p>
 
-<!-- Table -->
-<div class="card">
-    <div class="card-header border-0">
-      <h3 class="card-title"></h3>
-      <div class="card-tools">
-        <a href="#" class="btn btn-tool btn-sm">
-          <i class="fas fa-download"></i>
-        </a>
-        <a href="#" class="btn btn-tool btn-sm">
-          <i class="fas fa-bars"></i>
-        </a>
-      </div>
-    </div>
-    <div class="card-body p-0">
-      <table class="table table-striped table-valign-middle">
-        <thead>
-        <tr>
-          <th>تصویر محصول</th>
-          <th>شناسه محصول</th>
-          <th>نام محصول</th>
-          <th> رنگ محصول</th>
-          <th>اندازه محصول</th>
-          <th>تعداد</th>
-        </tr>
-        </thead>
-        <tbody>
-          {% for object in object_list%}
-        <tr>
-          <td>
-            <img src="{{object.image.url}}" alt="{{object.title}}" class="img-circle img-size-32 mr-2">
+        </div>
+        <!-- /.card-body -->
+        <div class="card-footer card-comments" style="display: block;">
+          <div class="info-box">
+            <span class="info-box-icon bg-danger"><i class="far fa-star"></i></span>
+            <div class="info-box-content">
+              <span class="info-box-text">ویژگی های محصول </span>
+              <span class="info-box-number">تعداد ویژگی مثلا دریل قرمز 2</span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          <div class="info-box">
+            <span class="info-box-icon bg-danger"><i class="far fa-star"></i></span>
+
+            <div class="info-box-content">
+              <span class="info-box-text">ویژگی های محصول </span>
+              <span class="info-box-number">تعداد ویژگی مثلا دریل قرمز 2</span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          <div class="info-box">
+            <span class="info-box-icon bg-danger"><i class="far fa-star"></i></span>
+
+            <div class="info-box-content">
+              <span class="info-box-text">ویژگی های محصول </span>
+              <span class="info-box-number">تعداد ویژگی مثلا دریل قرمز 2</span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
           
-          </td>
-          <td>{{object.id}}</td>
-          <td>
-            {{object.title}}
-          </td>
-          <td>
-            {{object.color}}
-          </td>
-          <td>
-            {{object.size}}
-          </td>
-          <td>
-           {{object.count}}
-          </td>
-       
-          <td>
-            <a  class="btn btn-warning" href="{% url 'product:variant_update' object.id %}">
-              ویرایش
-            </a>
-          </td>
-          <td>
-            <a  class="btn btn-danger" href="{% url 'product:variant_delete' object.id%}">
-              حذف
-            </a>
-          </td>
-        </tr>
-       {% endfor %}
-        </tbody>
-      </table>
+        </div>
+        <!-- /.card-footer -->
+        <div class="card-footer" style="display: block;">
+         
+            <div class="img-push">
+              
+            </div>
+          </form>
+        </div>
+        <!-- /.card-footer -->
+      </div>
+      <!-- /.card -->
     </div>
   </div>
-
-
-  {% endblock %}
+{% endblock %}
