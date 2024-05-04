@@ -22,7 +22,7 @@ class CategoryAdmin(admin.ModelAdmin):
 @admin.register(Variant)
 class VariantAdmin(admin.ModelAdmin):
 
-    list_display=('supply', 'type_to_str', 'size', 'inventory')
+    list_display=('supply', 'type_to_str', 'size_to_str', 'inventory')
 
 @admin.register(Type)
 class TypeAdmin(admin.ModelAdmin):

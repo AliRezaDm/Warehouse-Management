@@ -119,7 +119,7 @@ class Variant(models.Model):
 
     supply=models.ForeignKey(Supply, verbose_name='نام محصول', on_delete=models.CASCADE, related_name='variant_supply')
     type=models.ManyToManyField(Type, verbose_name='نوع محصول',  related_name='variant_type')
-    size=models.ForeignKey(Size, verbose_name='سایز محصول', on_delete=models.CASCADE, related_name='variant_size')
+    size=models.ManyToManyField(Size, verbose_name='سایز محصول',  related_name='variant_size')
     price = models.PositiveIntegerField(verbose_name='قیمت محصول')
     inventory=models.PositiveIntegerField(verbose_name='تعداد', default=1)
 
@@ -139,4 +139,8 @@ class Variant(models.Model):
     
     def type_to_str(self):
          return " - ".join([type.name for type in self.type.all()])
-    type_to_str.short_description = 'انواغ'
+    type_to_str.short_description = 'مدل ها'
+
+    def size_to_str(self):
+         return " - ".join([size.name for size in self.size.all()])
+    type_to_str.short_description = 'اندازه ها '
