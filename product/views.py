@@ -16,6 +16,11 @@ class HomeListView(ListView):
     model = Supply
     template_name = 'product/home.html'
 
+class SupplyListView(ListView):
+
+    model = Supply
+    template_name = 'product/list/supply_list.html'
+
 class SupplyCreateView(CreateView):
 
     model = Supply

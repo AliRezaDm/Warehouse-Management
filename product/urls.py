@@ -8,6 +8,7 @@ urlpatterns = [
 
     # Supply urls
     path('create_supply/', views.SupplyCreateView.as_view(), name='supply_create'), 
+    path('list_supply/', views.SupplyListView.as_view(), name='supply_list'), 
     path('update_supply/<int:id>', views.SupplyUpdateView.as_view(), name='supply_update'), 
     path('delete_supply/<int:id>', views.SupplyDeleteView.as_view(), name='supply_delete'),
 
