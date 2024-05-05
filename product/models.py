@@ -41,6 +41,8 @@ class Supply(models.Model):
     title = models.CharField(max_length=100, verbose_name='نام محصول')
     status = models.CharField(max_length=1, verbose_name='وضعیت محصول', choices=STATUS_CHOICE)
     description = models.TextField(verbose_name="توضیحی درباره محصول", blank=True, null=True)
+    type = models.ManyToManyField('Type', verbose_name='مدل محصول', related_name='supply_types')
+    size = models.ManyToManyField('Size', verbose_name='اندازه محصول', related_name='supply_size')
 
     #initializing the manager
     objects = SupplyManager()
@@ -66,20 +68,13 @@ class Supply(models.Model):
          return " - ".join([category.title for category in self.category.all()])
     category_to_str.short_description = 'دسته بندی'
 
-# class Color(models.Model):
-    
-#     name = models.CharField('نام رنگ', max_length=255, unique=True)
+    def type_to_str(self):
+         return " - ".join([type.name for type in self.type.all()])
+    type_to_str.short_description = 'مدل ها'
 
-#     def __str__(self):
-#         return self.name
-    
-#     class Meta:
-      
-#         verbose_name = 'رنگ'
-#         verbose_name_plural = 'رنگ ها'
-
-#     def get_absolute_url(self):
-#         return reverse("product:variant_list")
+    def size_to_str(self):
+         return " - ".join([size.name for size in self.size.all()])
+    type_to_str.short_description = 'اندازه ها '
 
 
 class Type(models.Model):
@@ -118,8 +113,8 @@ class Size(models.Model):
 class Variant(models.Model):
 
     supply=models.ForeignKey(Supply, verbose_name='نام محصول', on_delete=models.CASCADE, related_name='variant_supply')
-    type=models.ManyToManyField(Type, verbose_name='نوع محصول',  related_name='variant_type')
-    size=models.ManyToManyField(Size, verbose_name='سایز محصول',  related_name='variant_size')
+    type=models.ForeignKey(Type, verbose_name='نوع محصول',  related_name='variant_type', on_delete=models.CASCADE)
+    size=models.ForeignKey(Size, verbose_name='سایز محصول',  related_name='variant_size', on_delete=models.CASCADE)
     price = models.PositiveIntegerField(verbose_name='قیمت محصول')
     inventory=models.PositiveIntegerField(verbose_name='تعداد', default=1)
 
@@ -137,10 +132,3 @@ class Variant(models.Model):
     def get_absolute_url(self):
         return reverse("product:variant_list")
     
-    def type_to_str(self):
-         return " - ".join([type.name for type in self.type.all()])
-    type_to_str.short_description = 'مدل ها'
-
-    def size_to_str(self):
-         return " - ".join([size.name for size in self.size.all()])
-    type_to_str.short_description = 'اندازه ها '

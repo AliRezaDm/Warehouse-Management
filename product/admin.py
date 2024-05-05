@@ -5,7 +5,7 @@ from .models import Variant, Supply, Category, Type, Size
 @admin.register(Supply)
 class SupplyAdmin(admin.ModelAdmin):
 
-    list_display = ('id', 'image_tag','title', 'status', 'category_to_str')
+    list_display = ('id', 'image_tag','title', 'status', 'category_to_str', 'type_to_str', 'size_to_str')
     list_filter = (['id', 'status'])
     search_fields = ('id', 'title')
     ordering = ['id']
@@ -22,7 +22,7 @@ class CategoryAdmin(admin.ModelAdmin):
 @admin.register(Variant)
 class VariantAdmin(admin.ModelAdmin):
 
-    list_display=('supply', 'type_to_str', 'size_to_str', 'inventory')
+    list_display=('supply', 'type', 'size', 'inventory')
 
 @admin.register(Type)
 class TypeAdmin(admin.ModelAdmin):
