@@ -240,7 +240,7 @@ def search_view(request):
     this view gets search phrase from input in template named query via method POST
     and checks if there is match in Category.title
     """
-    variant_query =Variant.objects.Available()
+    variant_query =Variant.objects.all()
     if request.method == "POST":
         search = request.POST.get('query')
         variant = variant_query.filter(title__icontains = search)
