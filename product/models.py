@@ -13,7 +13,7 @@ class Category(models.Model):
 
     id = models.BigAutoField(verbose_name='شناسه دسته', primary_key=True)
     parent = models.ForeignKey('self', default=None, null=True, blank=True,\
-             on_delete=models.SET_NULL, related_name='children', verbose_name='زیردسته')
+             on_delete=models.SET_NULL, related_name='subsets', verbose_name='زیردسته')
     title = models.CharField(max_length=200, verbose_name='عنوان دسته بندی‍')
     status = models.BooleanField(default=True, verbose_name='وضعیت نمایش')
 

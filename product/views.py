@@ -16,6 +16,14 @@ class HomeListView(ListView):
     model = Supply
     template_name = 'product/home.html'
 
+    def get_context_data(self, **kwargs) -> dict[str, Any]:
+        context = super().get_context_data(**kwargs)
+        context["categories"] = Category.objects.filter(parent=None)
+        context["children"] = Category.objects.filter(parent=True)
+        context["recent"] = Supply.objects.all()[:3]
+        return context
+    
+
 class SupplyListView(ListView):
 
     model = Supply
