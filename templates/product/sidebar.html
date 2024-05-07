@@ -25,54 +25,10 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
+          
           <li class="nav-item has-treeview menu-open">
-            <a href="#" class="nav-link active">
-              <i class="nav-icon fas fa-edit"></i></i>
-              <p>
-                افزودن
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="{% url 'product:supply_create' %}" class="nav-link">
-                  <i class="nav-icon far fa-plus-square"></i>
-                  <p>افزودن محصول</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{% url 'product:variant_create' %}" class="nav-link">
-                  <i class="nav-icon far fa-plus-square"></i>
-                  <p>افزودن ویژگی</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{% url 'product:category_create' %}" class="nav-link">
-                  <i class="nav-icon far fa-plus-square"></i>
-                  <p>افزودن دسته</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{% url 'product:size_create' %}" class="nav-link">
-                  <i class="nav-icon far fa-plus-square"></i>
-                  <p>افزودن اندازه</p>
-                </a>
-              </li><li class="nav-item">
-                <a href="{% url 'product:type_create' %}" class="nav-link">
-                  <i class="nav-icon far fa-plus-square"></i>
-                  <p>افزودن رنگ</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-item has-treeview menu-open">
-            <a href="#" class="nav-link active">
-              <i class="nav-icon fas fa-table"></i>
-              <p>
-                لیست ها
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
+            
+            
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="{% url 'order:order_detail' %}" class="nav-link">
