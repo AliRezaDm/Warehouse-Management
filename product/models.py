@@ -83,7 +83,7 @@ class Supply(models.Model):
 
 class Type(models.Model):
     
-    name = models.CharField('نام رنگ', max_length=255, unique=True)
+    name = models.CharField('نام مدل', max_length=255, unique=True)
 
     def __str__(self):
         return self.name
