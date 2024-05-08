@@ -34,8 +34,8 @@ class CartItem(models.Model):
         return self.variant.size.name
     
 
-    def color(self):
-        return self.variant.color.name
+    def type(self):
+        return self.variant.type.name
     
     def price(self):
         return self.variant.price

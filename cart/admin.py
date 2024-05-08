@@ -3,7 +3,7 @@ from .models import *
 
 class CartItemInline(admin.TabularInline):
     model = CartItem
-    list_display = ['cart', 'variant', 'size', 'color', 'price', 'quantity', 'total_price']
+    list_display = ['cart', 'variant', 'size', 'type', 'price', 'quantity', 'total_price']
 
 
 @admin.register(Cart)
@@ -14,5 +14,5 @@ class CartAdmin(admin.ModelAdmin):
 
 @admin.register(CartItem)
 class CartItemAdmin(admin.ModelAdmin):
-    list_display = ['cart', 'variant', 'size', 'color', 'price', 'quantity', 'total_price']
+    list_display = ['cart', 'variant', 'size', 'type', 'price', 'quantity', 'total_price']
 
