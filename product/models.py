@@ -12,6 +12,7 @@ class SupplyManager(models.Manager):
 class Category(models.Model):
 
     id = models.BigAutoField(verbose_name='شناسه دسته', primary_key=True)
+    position = models.PositiveBigIntegerField(verbose_name="موقعیت", blank=True)
     parent = models.ForeignKey('self', default=None, null=True, blank=True,\
              on_delete=models.SET_NULL, related_name='subsets', verbose_name='زیردسته')
     title = models.CharField(max_length=200, verbose_name='عنوان دسته بندی‍')
@@ -20,8 +21,11 @@ class Category(models.Model):
 
 
     class Meta:
+            
             verbose_name = 'دسته بندی '
             verbose_name_plural = 'دسته بندی ها '
+            ordering = ['position']
+            
 
     def __str__(self):
          return self.title

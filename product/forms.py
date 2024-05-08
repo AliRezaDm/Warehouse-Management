@@ -17,7 +17,7 @@ class CategoryAddForm(forms.ModelForm):
 
     class Meta:
         model = Category
-        fields = ['id', 'parent', 'title', 'status']
+        fields = ['id', 'parent', 'position', 'title', 'status']
 
 class TypeAddForm(forms.ModelForm):
 
