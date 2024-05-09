@@ -12,13 +12,15 @@
       <!-- small box -->
       <div class="small-box bg-info">
         <div class="inner">
-          <h3>{{variant.count}}</h3>
-
-          <p>{{variant.title}}</p>
+          <p>اسم :{{variant.supply.title}}</p>
+          <p>اندازه :{{variant.size}}</p>
+          <p>مدل :{{variant.type}}</p>
+          <p>قیمت :{{variant.price}}</p>
+          <h3>تعداد :{{variant.inventory}}</h3>
         </div>
-        <div class="icon">
+        {% comment %} <div class="icon">
           <i class="ion ion-bag"></i>
-        </div>
+        </div> {% endcomment %}
         <a href="{% url 'product:variant_detail' variant.id %}" class="small-box-footer">نمایش بیشتر <i class="fas fa-arrow-circle-right"></i></a>
       </div>
     </div>

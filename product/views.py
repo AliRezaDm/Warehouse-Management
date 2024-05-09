@@ -256,7 +256,7 @@ def search_view(request):
     variant_query =Variant.objects.all()
     if request.method == "POST":
         search = request.POST.get('query')
-        variant = variant_query.filter(title__icontains = search)
+        variant = variant_query.filter(supply__title__icontains = search)
         return render(request, 'product/search_result.html', {"variant": variant})
 
 
