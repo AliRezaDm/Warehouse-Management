@@ -121,7 +121,7 @@
         </div>
         <!-- /.user-block -->
         <div class="card-tools">
-          <button type="button" class="btn btn-tool"><i class="fas fa-minus"></i>
+          <button type="button" class="btn btn-tool"><i></i>
             <a  class="fas fa-times" href="{% url 'product:variant_delete' object.id %}" style="margin-right:25px; color:red;">
             </a>
           </button>
@@ -144,17 +144,9 @@
       <div class="card-footer card-comments" style="display: block;">
         <div class="info-box">
           <span class="info-box-icon bg-success"><i class="far fa-star"></i></span>
-          <div class="info-box-content">
-            <span class="info-box-text">قیمت </span>
-            <span class="info-box-number">{{object.inventory}}</span>
-          </div>
-          <!-- /.info-box-content -->
-        </div>
-        <div class="info-box">
-          <span class="info-box-icon bg-success"><i class="far fa-star"></i></span>
 
           <div class="info-box-content">
-            <span class="info-box-text"> مدل های موجود</span>
+            <span class="info-box-text"> مدل موجود</span>
             <span class="info-box-number">{{object.type}}</span>
           </div>
           <!-- /.info-box-content -->
@@ -163,11 +155,25 @@
           <span class="info-box-icon bg-success"><i class="far fa-star"></i></span>
 
           <div class="info-box-content">
-            <span class="info-box-text">سایز های موجود </span>
+            <span class="info-box-text">سایز موجود </span>
             <span class="info-box-number">{{object.size}}</span>
           </div>
-          
-          
+          <!-- /.info-box-content -->
+        </div>
+        <div class="info-box">
+          <span class="info-box-icon bg-success"><i class="far fa-star"></i></span>
+          <div class="info-box-content">
+            <span class="info-box-text">تعداد </span>
+            <span class="info-box-number">{{object.inventory}}</span>
+          </div>
+          <!-- /.info-box-content -->
+        </div>
+        <div class="info-box">
+          <span class="info-box-icon bg-success"><i class="far fa-star"></i></span>
+          <div class="info-box-content">
+            <span class="info-box-text">قیمت </span>
+            <span class="info-box-number">{{object.price}}</span>
+          </div>
           <!-- /.info-box-content -->
         </div>
         <form method="post" action="{% url 'cart:add' %}">
