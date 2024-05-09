@@ -11,7 +11,7 @@
           <div class="card-header">
             <div class="user-block">
               
-              <span class="username"><a href="#">{{object.title}}</a></span>
+              <span class="username"><a href="{{ object.get_absolute_url}}">{{object.title}}</a></span>
               <span class="description">{{object.category_to_str}}</span>
             </div>
             <!-- /.user-block -->

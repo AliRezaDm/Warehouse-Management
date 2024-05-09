@@ -59,7 +59,7 @@
           <div class="card-header">
             <div class="user-block">
               
-              <span class="username"><a href="#">{{product.title}}</a></span>
+              <span class="username"><a href="{{ product.get_absolute_url}}">{{product.title}}</a></span>
               <span class="description">{{product.category_to_str}}</span>
             </div>
             <!-- /.user-block -->
