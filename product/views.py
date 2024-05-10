@@ -18,8 +18,7 @@ class HomeListView(ListView):
 
     def get_context_data(self, **kwargs) -> dict[str, Any]:
         context = super().get_context_data(**kwargs)
-        context["categories"] = Category.objects.filter(parent=None)
-        context["children"] = Category.objects.filter(parent=True)
+        context["categories"] = Category.objects.filter(children=None)
         context["recent"] = Supply.objects.all()[:3]
         return context
     
@@ -134,7 +133,7 @@ class CategoryList(ListView):
 class CategoryCreateView(CreateView):
 
     model = Category
-    fields = ['parent', 'position', 'title', 'status']
+    fields = ['children', 'title', 'status']
     template_name = "product/add/add_category_form.html"
 
 class CategoryDeleteView(DeleteView):
@@ -151,7 +150,7 @@ class CategoryDeleteView(DeleteView):
 class CategoryUpdateView(UpdateView):
 
     model = Category
-    fields = ['parent', 'title', 'status']
+    fields = ['children', 'title', 'status']
     template_name = "product/update/update_category_form.html"
     
     def get_object(self):
