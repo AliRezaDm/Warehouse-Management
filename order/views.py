@@ -31,6 +31,7 @@ def order_create(request):
             OrderItem.objects.create(order_id=order.id, variant=item.variant, price=item.variant.price, quantity=item.quantity)
             variant = Variant.objects.get(id= item.variant.id)
             variant.inventory -= item.quantity
+            variant.save()
         
         Cart.objects.filter(user_id=request.user.id).delete()
         
