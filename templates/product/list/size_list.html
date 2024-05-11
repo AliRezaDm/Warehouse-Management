@@ -27,9 +27,9 @@
         </div>
         <!-- /.card-header -->
         <div class="card-body">
-          {% if object.sizes.all %}
-            {% for i in object.sizes.all %}
-               {{i|linebreaks}}
+          {% if object.supply_size.all %}
+            {% for i in object.supply_size.all %}
+               {{ i|linebreaks }}
             {% endfor %}
           {% else %}
             محصولی در این دسته وجود ندارد
