@@ -66,7 +66,7 @@ class Supply(models.Model):
     image_tag.short_description = short_decsription = 'تصویر محصول'
 
     def get_absolute_url(self):
-        return reverse("product:variant_list")
+        return reverse("product:supply_variant_list", args=[self.id])
     
     def category_to_str(self):
          return " - ".join([category.title for category in self.category.all()])

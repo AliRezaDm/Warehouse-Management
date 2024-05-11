@@ -79,7 +79,14 @@ class VariantListView(ListView):
         cart_items_quantity = {item.variant.id : item.quantity for item in cart_items}
         context['cart_items_quantity'] = cart_items_quantity
         return context
+
+
+def supply_variant_list_view(request, supply_id):
+    variants = Variant.objects.filter(supply_id=supply_id)
     
+    context = {'object_list': variants}
+    
+    return render(request, 'product/list/variant_list.html', context)
 
 class VariantDetailView(DetailView):
 

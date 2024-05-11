@@ -14,6 +14,7 @@ urlpatterns = [
 
     # Variant Urls
     path ('variant_list/', views.VariantListView.as_view(), name='variant_list'),
+    path ('supply_variant_list/<int:supply_id>', views.supply_variant_list_view, name='supply_variant_list'),
     path ('detail/<int:id>', views.VariantDetailView.as_view(), name='variant_detail'),
     path ('create_variant/', views.VariantCreateView.as_view( ), name='variant_create'),
     path ('update_variant/<int:id>', views.VariantUpdateView.as_view( ), name='variant_update'),
