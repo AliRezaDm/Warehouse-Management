@@ -1,5 +1,6 @@
 {% extends "product/base.html" %}
 {% load static%}
+{% load jalali_tags %}
 
 {% block content %}
 
@@ -35,7 +36,7 @@
                   <td>{{item.price}}</td>
                   <td>{{item.quantity}}</td>
                   <td>{{item.total_price}}</td>
-                  <td>{{cart_user.create_at}}</td>
+                  <td>{{cart_user.create_at|to_jalali:'%y/%m/%d _ %H:%M:%S' }}</td>
                   </tr>
               {% endfor %}
               
