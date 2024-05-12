@@ -30,7 +30,7 @@
         <div class="card-body">
           {% if object.supply_types.all %}
             {% for i in object.supply_types.all %}
-               {{i|linebreaks}}
+              <a href="{{ i.get_absolute_url}}">{{ i|linebreaks }}</a>
             {% endfor %}
           {% else %}
             محصولی در این دسته وجود ندارد

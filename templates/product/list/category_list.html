@@ -28,19 +28,19 @@
         <div class="card-body">
           {% if object.cat.all %}
             {% for i in object.cat.all %}
-               {{i|linebreaks}}
+              <a href="{{ i.get_absolute_url}}">{{ i|linebreaks }}</a>
             {% endfor %}
           {% else %}
             محصولی در این دسته وجود ندارد
           {% endif %}
         </div>
-       
+      
       </div>
       
     </div>
     
     {% endfor %}
-   
+  
   </div>
 
 
