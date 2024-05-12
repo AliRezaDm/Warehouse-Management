@@ -33,6 +33,7 @@ class SupplyCreateView(CreateView):
     model = Supply
     fields = ['title', 'category', 'image', 'status', 'description']
     template_name = 'product/add/add_supply_form.html'
+    success_url = reverse_lazy('product:supply_list')
 
 class SupplyUpdateView(UpdateView):
 
@@ -103,6 +104,7 @@ class VariantCreateView(CreateView):
     # fields = ['supply', 'Type', 'size', 'inventory']
     template_name = 'product/add/add_variant_form.html'
     form_class = forms.VariantAddForm
+    success_url = reverse_lazy('product:variant_list')
 
 class VariantDeleteView(DeleteView):
 
@@ -142,11 +144,12 @@ class CategoryCreateView(CreateView):
     model = Category
     fields = ['children', 'title', 'status']
     template_name = "product/add/add_category_form.html"
+    success_url = reverse_lazy('product:category_list')
 
 class CategoryDeleteView(DeleteView):
 
     model = Variant
-    success_url = reverse_lazy('product:variant_list')
+    success_url = reverse_lazy('product:category_list')
     template_name = 'product/delete/delete_confirm_category.html'
 
     def get_object(self):
@@ -178,6 +181,7 @@ class SizeCreateView(CreateView):
     model = Size
     fields = ['name']
     template_name = "product/add/add_size_form.html"
+    success_url = reverse_lazy('product:size_list')
 
 class SizeUpdateView(UpdateView):
 
@@ -204,7 +208,7 @@ class SizeListView(ListView):
 class SizeDeleteView(DeleteView):
 
     model = Variant
-    success_url = reverse_lazy('product:variant_list')
+    success_url = reverse_lazy('product:size_list')
     template_name = 'product/delete/delete_confirm_size.html'
 
     def get_object(self):
@@ -218,6 +222,7 @@ class TypeCreateView(CreateView):
     model = Type
     fields = ['name']
     template_name = "product/add/add_type_form.html"
+    success_url = reverse_lazy('product:type_list')
 
 class TypeUpdateView(UpdateView):
 
@@ -244,7 +249,7 @@ class TypeListView(ListView):
 class TypeDeleteView(DeleteView):
 
     model = Variant
-    success_url = reverse_lazy('product:variant_list')
+    success_url = reverse_lazy('product:type_list')
     template_name = 'product/delete/delete_confirm_type.html'
 
     def get_object(self):
