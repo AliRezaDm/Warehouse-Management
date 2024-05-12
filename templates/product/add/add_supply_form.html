@@ -13,8 +13,8 @@
         <form enctype="multipart/form-data" method="post" action="{% url 'product:supply_create'%}">
           {% csrf_token %}
           <div class="form-row">
-      
             <div class="form-group col-md-6 mb-0">
+              برای انتخاب چند دسته بندی باید دکمه Cntrl را فشار دهید
               {{form.category|as_crispy_field }}
             </div>
             <div class="form-group col-md-6 mb-0">
@@ -27,6 +27,7 @@
             <div class="form-group col-md-6 mb-0">
               {{form.status|as_crispy_field }}
             </div>
+            توضیحی درباره محصول
             <div class="form-group col-md-6 mb-0">
               {{form.description}}
             </div>
