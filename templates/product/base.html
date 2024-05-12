@@ -77,13 +77,13 @@
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
           <span class="dropdown-item dropdown-header">منوی افزودن</span>
           <div class="dropdown-divider"></div>
-          <a href="{% url 'product:supply_create' %}" class="dropdown-item">
-            <i class="fas fa-plus-square"></i> افزودن محصول
+          <a href="{% url 'product:variant_create' %}" class="dropdown-item">
+            <i class="fas fa-plus-square"></i> افزودن ویژگی
             
           </a>
           <div class="dropdown-divider"></div>
-          <a href="{% url 'product:variant_create' %}" class="dropdown-item">
-            <i class="fas fa-plus-square"></i> افزودن ویژگی
+          <a href="{% url 'product:supply_create' %}" class="dropdown-item">
+            <i class="fas fa-plus-square"></i> افزودن محصول
             
           </a>
           <div class="dropdown-divider"></div>
@@ -94,6 +94,11 @@
           <div class="dropdown-divider"></div>
           <a href="{% url 'product:size_create' %}" class="dropdown-item">
             <i class="fas fa-plus-square"></i> افزودن اندازه
+            
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="{% url 'product:type_create' %}" class="dropdown-item">
+            <i class="fas fa-plus-square"></i> افزودن مدل
             
           </a>
       </li>
