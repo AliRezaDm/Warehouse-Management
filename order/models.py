@@ -37,12 +37,17 @@ class OrderItem(models.Model):
     
 
     def size(self):
-        return self.variant.size.name
-    
+        try:
+            return self.variant.size.name
+        except:
+            return 'هیچی'
 
     def type(self):
-        return self.variant.type.name
-
+        try:
+            return self.variant.type.name
+        except:
+            return 'هیچی'
+   
     def total_price(self):
         return self.price * self.quantity
 
