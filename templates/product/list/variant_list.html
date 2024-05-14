@@ -90,7 +90,12 @@
 <div class="row" style="padding-right:25px; padding-left:25px;">
   {% for object in object_list%}
     <div class="col-md-3">
-
+      {% if object.inventory < 6 %}
+        <div class="alert alert-warning">
+          <strong>موجودی محصول               <span class="username"><a href="{{ object.get_absolute_url}}">{{object.supply}}</a></span>
+            رو به پایان است و تعداد آن در انبار فقط {{ object.inventory }} تا است.</strong>
+        </div>
+      {% endif %}
       <!-- Profile Image -->
       <div class="card card-success card-outline">
         <div class="card-body box-profile">
