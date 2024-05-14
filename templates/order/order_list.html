@@ -1,23 +1,34 @@
 {% extends "product/base.html" %}
 {% load static%}
 {% load jalali_tags %}
-
+{% load humanize %}
 {% block content %}
+
 
 {% for order in orders %}
 <div class="card">
+  <h3 class="card-title" style="float:right"> سفارش شماره{{ order.id}} </h3>
   <div class="card-header">
-    <h3 class="card-title" style="float:right">لیست سفارشات</h3>
-    &emsp;
-    <h4 class="card-title" style="float:right">{{ order.customer_name }}</h4>
-    |
-    <h4 class="card-title" style="float:right">{{ order.customer_phone_number }}</h4>
+    
+    {% if order.customer_name and order.customer_phone_number %}
+      <h4 class="card-title" style="float:right">{{ order.customer_name }}</h4>    
+      <h4 class="card-title" style="float:right">{{ order.customer_phone_number }}</h4>
+    {% elif not order.customer_phone_number and order.customer_name %}
+      <h4 class="card-title" style="float:right">{{ order.customer_name }}</h4>    
+    {% elif not order.customer_name and order.customer_phone_number %}
+      <h4 class="card-title" style="float:right">{{ order.customer_phone_number }}</h4>
+    {% elif not order.customer_phone_number and not order.customer_name %}
+      مشتری گذری بوده
+    {% endif %}
   </div>
   <!-- /.card-header -->
   <div class="card-body">
     <table class="table table-bordered">
       <thead>
         <tr>
+          <th>
+            حذف
+          </th>
           <th style="width: 10px">ردیف</th>
           <th>عنوان</th>
           <th>مدل</th>
@@ -31,18 +42,23 @@
       <tbody>
         {% for item in order.order_items.all %}
         <tr>
-          <td>{{ item.id }}</td>
-          <td>{{ item.variant.supply.title }}</td>
-          <td>{{ item.variant.type.name }}</td>
-          <td>{{ item.variant.size.name }}</td>
-          <td>{{ item.price }}</td>
-          <td>{{ item.quantity }}</td>
-          <td>{{ item.total_price }}</td>
-          <td>{{ order.create_at|to_jalali:'%y/%m/%d _ %H:%M:%S' }}</td>
+          <td>            
+            <a class="fas fa-trash-alt" href="{% url 'order:remove' item.id %}"></a>
+          </td>
+          <td>{% if item.id %}{{ item.id }}{% else %}هیچی{% endif %}</td>
+          <td>{% if item.variant.supply.title %}{{ item.variant.supply.title }}{% else %}هیچی{% endif %}</td>
+          <td>{% if item.variant.type.name %}{{ item.variant.type.name }}{% else %}هیچی{% endif %}</td>
+          <td>{% if item.variant.size.name %}{{ item.variant.size.name }}{% else %}هیچی{% endif %}</td>
+          <td>{{ item.price|intcomma:False }} تومان</td>
+          <td>{% if item.quantity %}{{ item.quantity }}{% else %}0{% endif %}</td>
+          <td>{{ item.total_price|intcomma:False }} تومان</td>
+          <td>{{ order.create_at|to_jalali:"%y/%m/%d _ %H:%M:%S" }}</td>
         </tr>
         {% endfor %}
       </tbody>
     </table>
+    <a href="{% url 'order:clear' order.id %}">پاک کردن سفارش</a>
+
   </div>
   <!-- /.card-body -->
   <div class="card-footer clearfix">
