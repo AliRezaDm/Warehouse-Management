@@ -4,6 +4,8 @@ from .models import Order, OrderItem
 from cart.models import Cart, CartItem
 from product.models import Variant
 from django.contrib import messages
+from django.http import HttpResponseRedirect
+
 
 def order_detail(request):
     orders = Order.objects.prefetch_related('order_items').all()
@@ -34,8 +36,28 @@ def order_create(request):
             variant.save()
         
         Cart.objects.filter(user_id=request.user.id).delete()
-        
+        messages.success(request, "سفارش شما با موفقیت ساخته شد.")
+
         return redirect('order:order_detail')
     except:
         messages.warning(request, "در ابتدا باید محصول مورد نظر را به سبد خرید اضافه کنید.")
         return redirect('product:variant_list')
+
+
+def remove_order_item(request, order_item_id):
+
+    url = request.META.get('HTTP_REFERER')    
+    order_user = Order.objects.get(user__id=request.user.id)
+    order_items = OrderItem.objects.get(id=order_item_id, order__id=order_user.id)
+
+    order_items.delete()
+    
+    return HttpResponseRedirect(url)
+
+
+def clear_order(request, order_id):  
+    url = request.META.get('HTTP_REFERER')
+    order = Order.objects.get(id=order_id, user__id=request.user.id)
+    order.delete()
+
+    return HttpResponseRedirect(url)
