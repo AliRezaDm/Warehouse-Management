@@ -16,6 +16,9 @@
         <table class="table table-bordered">
           <thead>                  
             <tr>
+              <th>
+                حذف
+              </th>
               <th style="width: 10px">ردیف</th>
               <th>عنوان</th>
               <th>رنگ</th>
@@ -28,16 +31,19 @@
           </thead>
           <tbody>
               {% for item in object_list %}
-                  <tr>
+                <tr>
+                  <td>            
+                    <a class="fas fa-trash-alt" href="{% url 'cart:remove' item.id %}"></a>
+                  </td>
                   <td>{{item.id}}</td>
                   <td>{{item.variant}}</td>
                   <td>{{item.type}}</td>
                   <td>{{item.size}}</td>
-                  <td>{{item.price}}</td>
+                  <td>{{item.price|intcomma:False}}</td>
                   <td>{{item.quantity}}</td>
-                  <td>{{item.total_price}}</td>
+                  <td>{{item.total_price|intcomma:False}}</td>
                   <td>{{cart_user.create_at|to_jalali:'%y/%m/%d _ %H:%M:%S' }}</td>
-                  </tr>
+                </tr>
               {% endfor %}
               
           </tbody>
@@ -45,7 +51,7 @@
       </div>
 
       <br>
-      
+      <a href="{% url 'cart:clear' %}">خالی کردن سبدخرید</a>
       <form method="post" action="{% url 'order:order_create' %}">
         {% csrf_token %}
         <div class="row">
