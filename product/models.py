@@ -117,8 +117,8 @@ class Size(models.Model):
 class Variant(models.Model):
 
     supply=models.ForeignKey(Supply, verbose_name='نام محصول', on_delete=models.CASCADE, related_name='variant_supply')
-    type=models.ForeignKey(Type, verbose_name='نوع محصول',  related_name='variant_type', on_delete=models.CASCADE, blank=True, null=True)
-    size=models.ForeignKey(Size, verbose_name='سایز محصول',  related_name='variant_size', on_delete=models.CASCADE, blank=True, null=True)
+    type=models.ForeignKey(Type, verbose_name='نوع محصول',  related_name='variant_type', on_delete=models.SET_NULL, blank=True, null=True)
+    size=models.ForeignKey(Size, verbose_name='سایز محصول',  related_name='variant_size', on_delete=models.SET_NULL, blank=True, null=True)
     price = models.PositiveIntegerField(verbose_name='قیمت محصول')
     inventory=models.PositiveIntegerField(verbose_name='تعداد', default=1)
 
@@ -134,5 +134,5 @@ class Variant(models.Model):
         verbose_name_plural = ' محصولات با ویژگی'
 
     def get_absolute_url(self):
-        return reverse("product:variant_list")
+        return reverse("product:variant_detail", args=[self.id])
     
