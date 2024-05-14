@@ -43,7 +43,7 @@
         {% for item in order.order_items.all %}
         <tr>
           <td>            
-            <a class="fas fa-trash-alt" href="{% url 'order:remove' item.id %}"></a>
+            <a class="fas fa-trash-alt" href="{% url 'order:remove' order.id item.id %}"></a>
           </td>
           <td>{% if item.id %}{{ item.id }}{% else %}هیچی{% endif %}</td>
           <td>{% if item.variant.supply.title %}{{ item.variant.supply.title }}{% else %}هیچی{% endif %}</td>

@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.urls import reverse
 from django.views.decorators.http import require_POST
 from .models import Order, OrderItem
 from cart.models import Cart, CartItem
@@ -44,14 +45,17 @@ def order_create(request):
         return redirect('product:variant_list')
 
 
-def remove_order_item(request, order_item_id):
+def remove_order_item(request, order_id, order_item_id):
 
     url = request.META.get('HTTP_REFERER')    
-    order_user = Order.objects.get(user__id=request.user.id)
-    order_items = OrderItem.objects.get(id=order_item_id, order__id=order_user.id)
+    order_user = Order.objects.get(id=order_id, user__id=request.user.id)
+    order_item = OrderItem.objects.get(id=order_item_id, order__id=order_user.id)
 
-    order_items.delete()
+    order_item.delete()
+    messages.success(request, "مورد مدنظر از سفارش شما با موفقیت حذف شد.")
     
+    order = Order.objects.get(id=order_id, user__id=request.user.id)
+
     return HttpResponseRedirect(url)
 
 
@@ -59,5 +63,6 @@ def clear_order(request, order_id):
     url = request.META.get('HTTP_REFERER')
     order = Order.objects.get(id=order_id, user__id=request.user.id)
     order.delete()
+    messages.success(request, "سفارش شما با موفقیت پاک شد.")
 
     return HttpResponseRedirect(url)
