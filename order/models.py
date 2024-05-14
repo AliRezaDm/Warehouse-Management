@@ -28,7 +28,7 @@ class Order(models.Model):
 class OrderItem(models.Model):
 
     order = models.ForeignKey(Order, verbose_name=' سفارش', on_delete=models.CASCADE, related_name='order_items')
-    variant =  models.ForeignKey(Variant, verbose_name='نام محصول', on_delete=models.CASCADE, related_name='order_supply')
+    variant =  models.ForeignKey(Variant, verbose_name='نام محصول', on_delete=models.PROTECT, related_name='order_variants')
     price = models.PositiveIntegerField(verbose_name='قیمت محصول')
     quantity = models.PositiveIntegerField(verbose_name='تعداد محصول', default=1)
 

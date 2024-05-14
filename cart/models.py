@@ -23,7 +23,7 @@ class Cart(models.Model):
 class CartItem(models.Model):
 
     cart = models.ForeignKey(Cart, verbose_name=' سبد خرید', on_delete=models.CASCADE, related_name='cart_items')
-    variant =  models.ForeignKey(Variant, verbose_name='نام محصول', on_delete=models.CASCADE, related_name='cart_supply', unique=True)
+    variant =  models.ForeignKey(Variant, verbose_name='نام محصول', on_delete=models.PROTECT, related_name='cart_supply', unique=True)
     quantity = models.PositiveIntegerField(verbose_name='تعداد محصول')
 
     def __str__(self):
