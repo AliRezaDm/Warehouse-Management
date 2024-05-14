@@ -73,8 +73,14 @@ class SupplyDeleteView(DeleteView):
 
     def post(self, request, *args, **kwargs):
         self.object = self.get_object()
+        order_items = OrderItem.objects.filter(variant__supply__id=self.object.id)
+        if order_items.exists():
+            # If the variant exists in orders, display an error message
+            messages.error(self.request, f'این محصول در سفارش موجود است. ابتدا باید سفارشات را حذف کنید.')
+            return HttpResponseRedirect(reverse('product:supply_list'))
+
         self.object.delete()
-        messages.success(self.request, 'محصول مورد نظر با موفقیت حذف شد!')
+        messages.success(self.request, 'محصول با ویژگی مورد نظر با موفقیت حذف شد!')
         return HttpResponseRedirect(self.get_success_url())
 
     def get_object(self):
