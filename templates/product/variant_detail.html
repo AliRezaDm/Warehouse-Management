@@ -1,5 +1,8 @@
 {% extends "product/base.html" %}
 {% load static %}
+{% load humanize %}
+{% load jalali_tags %}
+
 {% block content%}
 {% comment %} 
 <section class="content-header"> 
@@ -172,7 +175,7 @@
           <span class="info-box-icon bg-success"><i class="far fa-star"></i></span>
           <div class="info-box-content">
             <span class="info-box-text">قیمت </span>
-            <span class="info-box-number">{{object.price}}</span>
+            <span class="info-box-number">{{object.price|intcomma:False}}</span>
           </div>
           <!-- /.info-box-content -->
         </div>
@@ -185,11 +188,68 @@
           </div>
           <div class="info-box-content" style="padding-bottom:15px;">
             <button class="btn btn-success" type="submit">افزودن به لیست</button>
-        </form>    
             <input style="display:none;" name="variant_id" value={{object.id}}>
           </div> 
+        </form>    
       </div>
       <!-- /.card-footer -->
+      {% for order in order_items %}
+        <div class="card">
+          <h3 class="card-title" style="float:right">سفارش شماره{{ order.order.id}}</h3>
+          <div class="card-header">
+            
+            {% if order.order.customer_name and order.order.customer_phone_number %}
+              <h4 class="card-title" style="float:right">{{ order.order.customer_name }}</h4>    
+              <h4 class="card-title" style="float:right">{{ order.order.customer_phone_number }}</h4>
+            {% elif not order.order.customer_phone_number and order.order.customer_name %}
+              <h4 class="card-title" style="float:right">{{ order.order.customer_name }}</h4>    
+            {% elif not order.order.customer_name and order.order.customer_phone_number %}
+              <h4 class="card-title" style="float:right">{{ order.order.customer_phone_number }}</h4>
+            {% elif not order.order.customer_phone_number and not order.order.customer_name %}
+              مشتری گذری بوده
+            {% endif %}
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>
+                    حذف
+                  </th>
+                  <th style="width: 10px">ردیف</th>
+                  <th>عنوان</th>
+                  <th>مدل</th>
+                  <th>سایز</th>
+                  <th>قیمت</th>
+                  <th>تعداد</th>
+                  <th>قیمت کل</th>
+                  <th>تاریخ و ساعت</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>            
+                    <a class="fas fa-trash-alt" href="{% url 'order:remove' order.id %}"></a>
+                  </td>
+                  <td>{% if order.id %}{{ order.id }}{% else %}هیچی{% endif %}</td>
+                  <td>{% if order.variant.supply.title %}{{ order.variant.supply.title }}{% else %}هیچی{% endif %}</td>
+                  <td>{% if order.variant.type.name %}{{ order.variant.type.name }}{% else %}هیچی{% endif %}</td>
+                  <td>{% if order.variant.size.name %}{{ order.variant.size.name }}{% else %}هیچی{% endif %}</td>
+                  <td>{{ order.price|intcomma:False }} تومان</td>
+                  <td>{% if order.quantity %}{{ order.quantity }}{% else %}0{% endif %}</td>
+                  <td>{{ order.total_price|intcomma:False }} تومان</td>
+                  <td>{{ order.order.create_at|to_jalali:"%y/%m/%d _ %H:%M:%S" }}</td>
+                </tr>
+              </tbody>
+            </table>
+            <a href="{% url 'order:clear' order.order.id %}">پاک کردن سفارش</a>
+          </div>
+          <!-- /.card-body -->
+          <div class="card-footer clearfix">
+          </div>
+        </div>
+      {% endfor %}
       <div class="card-footer" style="display: block;">
        
           <div class="img-push">
