@@ -2,8 +2,10 @@
 {% load static %}
 {% load cart_tags %}
 {% block content %}
-
-<h2 style="padding-right:25px; padding-bottom: 25px;">لیست محصولات</h2>
+<p class-"btn btn-primary" style="float:left; padding:20px;">
+  <a href="{% url 'product:variant_create' %}" > افزودن ویژگی به محصولات دیگر</a>
+  </p>
+<h2 style="padding-right:25px; padding-bottom: 25px;"> لیست محصولات با ویژگی</h2>
 
 <!-- Table -->
 {% comment %} <div class="card">
