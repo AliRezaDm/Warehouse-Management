@@ -4,7 +4,7 @@ from django.http import HttpResponseRedirect
 from django.views.generic import ListView
 from .models import Cart, CartItem
 from django.views.decorators.http import require_POST
-
+from django.contrib import messages
 
 from product.models import Variant
 
@@ -22,8 +22,8 @@ from product.models import Variant
 def cart_detail(request):
 
     try:
-        cart_user = Cart.objects.get(user=request.user)
-        item = CartItem.objects.all()
+        cart_user = Cart.objects.get(user__id=request.user.id)
+        item = CartItem.objects.filter(cart__id=cart_user.id)
         context ={
             'object_list' : item,
             'cart_user' : cart_user
@@ -46,13 +46,20 @@ def add_cart(request):
         variant_quantity = int(variant_quantity)
         cart_item.quantity += variant_quantity
         cart_item.save()
+        messages.success(request, f"تعداد {variant_quantity} به محصول با ویژگی مورد نظر در سبد خرید اضافه شد.")
+
     except Cart.DoesNotExist:
         cart_user = Cart.objects.create(user=request.user)
         variant = get_object_or_404(Variant, id=variant_id)
         CartItem.objects.create(cart=cart_user, variant=variant, quantity=variant_quantity)
+        messages.success(request, f"سبد خرید ساخته شد و تعداد {variant_quantity} به محصول با ویژگی مورد نظر در سبد خرید اضافه شد.")
+
     except CartItem.DoesNotExist:
         variant = get_object_or_404(Variant, id=variant_id)
-        CartItem.objects.create(cart=cart_user, variant=variant, quantity=variant_quantity)    # cart_user = Cart.objects.filter(user__id=request.user.id)
+        CartItem.objects.create(cart=cart_user, variant=variant, quantity=variant_quantity)
+        messages.success(request, f"تعداد {variant_quantity} به محصول با ویژگی مورد نظر در سبد خرید اضافه شد.")
+
+    # cart_user = Cart.objects.filter(user__id=request.user.id)
     # cart_items = CartItem.objects.filter(cart__in=cart_user, variant__id=variant_id)   
     # if cart_items:
     #     cart_items.quantity += variant_quantity 
@@ -63,13 +70,11 @@ def add_cart(request):
 
     return HttpResponseRedirect(url)
 
-@require_POST
-def remove_cart(request):
+def remove_cart(request, cart_item_id):
 
     url = request.META.get('HTTP_REFERER')    
-    variant_id = request.POST.get('variant_id')
     cart_user = Cart.objects.get(user__id=request.user.id)
-    cart_items = CartItem.objects.get(cart__id=cart_user, variant__id=variant_id)
+    cart_items = CartItem.objects.get(id=cart_item_id, cart__id=cart_user.id)
 
     cart_items.delete()
     
