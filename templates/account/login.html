@@ -43,7 +43,7 @@
                     <div class="form-items">
                         <h3 style="float:right;">ورود به پنل مدیریت</h3>
                         <p></p>
-                        <form method="post">
+                        <form method="post" action=''>
                             {% csrf_token %}
                             <input class="form-control" style=" padding-bottom: 150px;"type="text" name="login" placeholder="نام کاربری" required>
                             <input class="form-control" type="password" name="password" placeholder="رمز عبور" required>
@@ -54,7 +54,7 @@
                         <div class="other-links">
                         </div>
                         <div class="page-links">
-                           
+                            <a href="{% url 'account_signup' %}">حساب ندارید؟ ثبت نام کنید</a>
                         </div>
                     </div>
                 </div>
