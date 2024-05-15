@@ -23,7 +23,14 @@
             <div class="form-group col-md-6 mb-0">
               {{form.image|as_crispy_field }}
             </div>
-            
+            <div class="form-group col-md-6 mb-0">
+              برای انتخاب چند اندازه باید دکمه Cntrl را فشار دهید
+              {{form.size|as_crispy_field }}
+            </div>
+            <div class="form-group col-md-6 mb-0">
+              برای انتخاب چند مدل باید دکمه Cntrl را فشار دهید
+              {{form.type|as_crispy_field }}
+            </div>
             <div class="form-group col-md-6 mb-0">
               {{form.status|as_crispy_field }}
             </div>

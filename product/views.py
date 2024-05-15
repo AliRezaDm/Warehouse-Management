@@ -34,7 +34,7 @@ class SupplyListView(ListView):
 class SupplyCreateView(CreateView):
 
     model = Supply
-    fields = ['title', 'category', 'image', 'status', 'description']
+    fields = ['title', 'category', 'image', 'status', 'size', 'type', 'description']
     template_name = 'product/add/add_supply_form.html'
     success_url = reverse_lazy('product:supply_list')
     success_message = "محصول با موفقیت ساخته شد!"  # Assuming 'name' field exists
