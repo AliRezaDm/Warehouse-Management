@@ -1,10 +1,12 @@
 from django.urls import path
 from . import views
+from django.contrib.auth.decorators import login_required
+
 
 app_name ='product'
 urlpatterns = [
 
-    path('', views.HomeListView.as_view(), name='home'),
+    path('', login_required(views.HomeListView.as_view()), name='home'),
 
     # Supply urls
     path('create_supply/', views.SupplyCreateView.as_view(), name='supply_create'), 
