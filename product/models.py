@@ -1,7 +1,7 @@
 from django.db import models
 from django.utils import html 
 from django.urls import reverse
-
+from django.core.validators import MinValueValidator
 #Managers
 class SupplyManager(models.Manager):
      
@@ -119,8 +119,8 @@ class Variant(models.Model):
     supply=models.ForeignKey(Supply, verbose_name='نام محصول', on_delete=models.CASCADE, related_name='variant_supply')
     type=models.ForeignKey(Type, verbose_name='نوع محصول',  related_name='variant_type', on_delete=models.SET_NULL, blank=True, null=True)
     size=models.ForeignKey(Size, verbose_name='سایز محصول',  related_name='variant_size', on_delete=models.SET_NULL, blank=True, null=True)
-    price = models.PositiveIntegerField(verbose_name='قیمت محصول')
-    inventory=models.PositiveIntegerField(verbose_name='تعداد', default=1)
+    price = models.PositiveIntegerField(verbose_name='قیمت محصول', validators=[MinValueValidator(1)])
+    inventory=models.PositiveIntegerField(verbose_name='تعداد', default=1, validators=[MinValueValidator(1)])
 
     def __str__(self):
         return self.supply.title 

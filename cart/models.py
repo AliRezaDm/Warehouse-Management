@@ -2,6 +2,7 @@ from django.db import models
 from product.models import Variant
 from accounts.models import BaseUser
 from django.utils import timezone
+from django.core.validators import MinValueValidator
 
 class Cart(models.Model):
 
@@ -24,7 +25,7 @@ class CartItem(models.Model):
 
     cart = models.ForeignKey(Cart, verbose_name=' سبد خرید', on_delete=models.CASCADE, related_name='cart_items')
     variant =  models.ForeignKey(Variant, verbose_name='نام محصول', on_delete=models.PROTECT, related_name='cart_supply', unique=True)
-    quantity = models.PositiveIntegerField(verbose_name='تعداد محصول')
+    quantity = models.PositiveIntegerField(verbose_name='تعداد محصول', validators=[MinValueValidator(1)])
 
     def __str__(self):
         return f' کاربر:{self.cart.user.username} '
